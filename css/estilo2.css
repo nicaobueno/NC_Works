@@ -1,0 +1,9 @@
+#logocabeca{
+    width: 35px;
+    height: 35px;
+}
+.scrollspySite{
+    position: relative;
+    overflow: auto;
+    height: 300px;
+}
