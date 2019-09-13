@@ -8,55 +8,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/estilobt/node_modules/bootstrap/compiler/bootstrap.css"/>
 
-    <title>Profissonas</title>
+    <title>N.C. WORKS</title>
   </head>
   <body>
-
-    <!--Cabeçalho-->
-    <nav class="navbar nabar-fixed-top navbar-expand-lg navbar-light bg-primary">
-
-      <div class="container">
-
-        <a class="navbar-brand h1 mb-0" href="index.html"><img id="logocabeca" src="img/profissonas.png" title="Profissonas" alt="Profissonas"></a>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarSite">
-
-                <ul class="navbar-nav mr-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar-se</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="empresa.html">Empresas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Entre em contato</a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown" id="navDrop">Redes Sociais</a>                   
-                    <div class="dropdown-menu navbar-dark bg-dark">
-                      <a class="dropdown-item" href="#">Facebook</a>
-                      <a class="dropdown-item" href="#">Intagram</a>
-                      <a class="dropdown-item" href="#">WhatsApp</a>
-                    </div>
-                  </li>
-                </ul>
-                <form class="form-inline">
-                  <input class="form-control ml-2 mr-auto" type="search" placeholder="Pesquisar...">
-                  <button class="btn btn-dark" type="submit">Ok</button>
-                </form>
-            </div>
-          </div>
-    </nav>
+    <?php
+    if(isset($_SESSION["nome"])){
+        $usuario = $_SESSION["nome"];
+        echo "<h3>Bem-Vindo $usuario</h3>";
+        echo "<a href='sair.php'><button>Sair</button></a>";
+    }
+    ?>
     <!--Slider-->
     <div id="carouselSite" class="carousel slide" data-ride="carousel">
 
@@ -83,7 +44,7 @@
 
                 <div class="carousel-caption d-none d-md-block">
 
-                    <h1>Profissonas, ajudando empresas e profissionais</h1>
+                    <h1>N.C. WORKS, ajudando empresas e profissionais</h1>
                     <p class="lead">Desde 2019 ajudando as empresas a empregar profissionais qualificados</p>
                 </div>
             </div>
@@ -124,7 +85,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center my-5">
-                <h1 class="display-3">Seja bem-vindo ao Profissonas</h1>
+                <h1 class="display-3">Seja bem-vindo ao N.C. WORKS</h1>
                 <p>Seu futuro emprego ou funcionário é aqui!</p>
             </div>
         </div>
@@ -207,11 +168,11 @@
 <div class="row">
         <div class="col-sm-4">
             <div class="card">
-                <img class="img-card-top" src="img/Profissonas.png">
+                <img class="img-card-top" src="img/N.C. WORKS.png">
                 <div class="card-body">
                     <h4 class="card-title">Hardcori</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Jhenny linda</h6> 
-                    <p class="card-text">Profissonas o tcc mais vida louca que existe, eu to fazendo sozinho</p>
+                    <p class="card-text">N.C. WORKS o tcc mais vida louca que existe, eu to fazendo sozinho</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Salario: 3000</li>
@@ -229,11 +190,11 @@
         </div>
     <div class="col-sm-4">
         <div class="card">
-            <img class="img-card-top" src="img/Profissonas.png">
+            <img class="img-card-top" src="img/N.C. WORKS.png">
             <div class="card-body">
                 <h4 class="card-title">Hardcori</h4>
                 <h6 class="card-subtitle mb-2 text-muted">Jhenny linda</h6> 
-                <p class="card-text">Profissonas o tcc mais vida louca que existe, eu to fazendo sozinho</p>
+                <p class="card-text">N.C. WORKS o tcc mais vida louca que existe, eu to fazendo sozinho</p>
             </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Salario: 3000</li>
@@ -251,11 +212,11 @@
     </div>
     <div class="col-sm-4">
             <div class="card">
-            <img class="img-card-top" src="img/Profissonas.png">
+            <img class="img-card-top" src="img/N.C. WORKS.png">
             <div class="card-body">
                 <h4 class="card-title">Hardcori</h4>
                 <h6 class="card-subtitle mb-2 text-muted">Jhenny linda</h6> 
-                <p class="card-text">Profissonas o tcc mais vida louca que existe, eu to fazendo sozinho</p>
+                <p class="card-text">N.C. WORKS o tcc mais vida louca que existe, eu to fazendo sozinho</p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Salario: 3000</li>
