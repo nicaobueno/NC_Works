@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div>
+    <!-- <div>
         <form method="POST" action="">
             <div>
                 <label for="login">Usuário:</label>
@@ -38,11 +38,9 @@
                 Não é cadastrado? <a href="./cadastro.php">Cadastrar</a>
             </p>
         </form>
-    </div>
+    </div> -->
 
     <?php
-        if (isset($_POST["entrar"])) {
-
             require "./includes/conexao.php";
 
             $login = $_POST["login"];
@@ -84,13 +82,11 @@
                 
                 echo("<script>alert('Logado com Sucesso!')</script>");                                                
                 setcookie("login",$login);                
-                echo "<meta http-equiv='refresh' content='0;url=index.php' />";
+                echo "<meta http-equiv='refresh' content='0;url=index.php' />";                
                 exit;
             }        
             
     }
-
-}
         
     ?>
 

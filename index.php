@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/estilo2.css"/>
     <link rel="icon" href="img/logotcc.png">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/estilobt/node_modules/bootstrap/compiler/bootstrap.css"/>
+    <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
 
     <title>N.C. WORKS</title>
   </head>
@@ -19,48 +19,44 @@
     <!--Cabeçalho-->
     <nav class="navbar nabar-fixed-top navbar-expand-lg navbar-light bg-primary">
 
-      <div class="container">
+    <div class="container">
 
-        <a class="navbar-brand h1 mb-0" href="index.php"><img id="logocabeca" src="img/logotcc.png" title="N.C. WORKS" alt="N.C. WORKS"></a>
+      <a class="navbar-brand h1 mb-0" href="index.php"><img id="logocabeca" src="img/logotcc.png" title="N.C. Works" alt="N.C. Works" height="40px" width="40px"></a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="navbarSite">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+          <div class="collapse navbar-collapse" id="navbarSite">
 
-                <ul class="navbar-nav mr-auto">
+              <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="?action=cadastrar">Cadastrar-se</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?action=entrar">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?action=empresas">Empresas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?action=contato">Entre em contato</a>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown" id="navDrop">Redes Sociais</a>                   
-                    <div class="dropdown-menu navbar-dark bg-dark">
-                      <a class="dropdown-item" href="#">Facebook</a>
-                      <a class="dropdown-item" href="#">Intagram</a>
-                      <a class="dropdown-item" href="#">WhatsApp</a>
-                    </div>
+                  <li class="nav-item">
+                      <a class="nav-link" href="?action=entrar" data-toggle="modal" data-target="#siteModal">Entrar</a>
                   </li>
-                </ul>
-                <form class="form-inline">
-                  <input class="form-control ml-2 mr-auto" type="search" placeholder="Pesquisar...">
-                  <button class="btn btn-dark" type="submit">Ok</button>
-                </form>
-            </div>
+                  <li class="nav-item">
+                    <a class="nav-link" href="?action=cadastrar" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Empresas</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Entre em contato</a>
+                  </li>
+
+              </ul>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="navDrop">Redes Sociais</a>                   
+                  <div class="dropdown-menu navbar-dark bg-primary">
+                    <a class="dropdown-item" href="#">Facebook</a>
+                    <a class="dropdown-item" href="#">Intagram</a>
+                    <a class="dropdown-item" href="#">WhatsApp</a>
+                  </div>
+                </li>
+              </ul>
           </div>
-    </nav>
+        </div>
+</nav>
     <?php
         if (isset($_GET["action"])) {
             switch ($_GET["action"]) {
@@ -84,8 +80,14 @@
     ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="css/estilobt/node_modules/jquery/dist/jquery.js"></script>
-    <script src="css/estilobt/node_modules/popper.js/dist/umd/popper.js"></script>
-    <script src="css/estilobt/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bts/node_modules/jquery/dist/jquery.js"></script>
+    <script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script>
+        $(function (){
+            $('[data-toggle="popover"]').popover()
+        })
+    </script>
   </body>
 </html>

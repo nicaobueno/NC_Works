@@ -13,7 +13,7 @@
 
 <body>
 <center>
-<form name="frmCadastro" method="post" action="">
+<!-- <form name="frmCadastro" method="post" action="">
     <table width="500" border="0">
         <tr>
             <h3>Preencha todos os campos</h3>
@@ -40,10 +40,9 @@
             </td>
         </tr>
     </table>
-</form>
+</form> -->
 </center>
     <?php
-if (isset($_POST["cadastrar"])) {
 
     require "./includes/conexao.php";
 
@@ -85,12 +84,12 @@ if (isset($_POST["cadastrar"])) {
                 $hash = password_hash($senha, PASSWORD_BCRYPT);
                 $sql = "INSERT INTO tb_usuario (usuario, email, senha, tipo) VALUES ('$usuario', '$email', '$hash', '$tipo')";
                 mysqli_query($link, $sql) or die("Não foi possível Inserir!");
-                echo "Dados inseridos com sucesso!";
+                echo "<script>alert('Dados inseridos com sucesso!')</script>";
             }
         }
         mysqli_close($link);
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
     }
-}
 
 // // else 
 //     header("Location: index.php");
