@@ -1,4 +1,7 @@
 <?php
+  session_start();
+?>
+<?php
 // session_start();
 // if (!isset($_SESSION["login"])){
 // 	header("Location: index.php");
@@ -69,7 +72,8 @@
                 // $rows = mysqli_num_rows($result);
                 //header("../cadastro.php?error=usertaken&email=" . $email);                
                 // echo "<meta http-equiv='refresh' content='0;url=login.php' />";
-                exit("<script>alert('Usuário/email ou senha incorretos')</script>");              
+               echo "<script>alert('Usuário/email ou senha incorretos')</script>";
+               exit("<meta http-equiv='refresh' content='0;url=index.php' />");
             }elseif(password_verify($senha, $array["senha"]) == true){
                 $nome = $array["usuario"];
                 $_SESSION["login"] = $login;
@@ -80,7 +84,7 @@
                 // $array = mysqli_fetch_array($result);
                 // $nome = $array["usuario"];
                 
-                echo("<script>alert('Logado com Sucesso!')</script>");                                                
+                // echo("<script>alert('Logado com Sucesso!')</script>");                                                
                 setcookie("login",$login);                
                 echo "<meta http-equiv='refresh' content='0;url=index.php' />";                
                 exit;
