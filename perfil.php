@@ -1,3 +1,6 @@
+<?php
+require("validar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perfil</title>
 </head>
-<body>
+<body class="bg-light">
     <center>
 
         <h1>Perfil</h1>

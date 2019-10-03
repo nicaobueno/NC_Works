@@ -9,14 +9,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="css/estilo2.css" />
-  <link rel="icon" href="img/logotcc.png">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
 
   <title>N.C. WORKS</title>
 </head>
 
-<body>
+<body class="bg-light">
 
   <!--Cabeçalho-->
   <nav class="navbar nabar-fixed-top navbar-expand-lg navbar-light bg-primary">
@@ -44,7 +44,14 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Entre em contato</a>
           </li>
-
+          <?php
+            if(isset($_SESSION["nome"])){
+              $usuario = $_SESSION["nome"];
+              echo  "<li class='nav-item'>
+              <a class='nav-link' href='cadastrar_vaga.php'>Cadastrar Vagas</a>
+            </li>"; //?action=cadastrar_vaga
+            }
+          ?>
         </ul>
 
         <!-- Apresentação do usuario na seção -->
@@ -90,6 +97,10 @@
                 case 'perfil':
                     $incluir = "perfil.php";
                     break;
+                case 'cadastrar_vaga':
+                $incluir = "cadastrar_vaga.php";
+                break;
+                  
             }
             include($incluir);
         }else{

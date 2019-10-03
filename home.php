@@ -45,7 +45,7 @@
     <title>N.C. Works</title>
 </head>
 
-<body>
+<body class="bg-light">
     <!--Cabeçalho-->
 
     <div class="jumbotron jumbotron-fluid">
@@ -182,14 +182,14 @@
                                     <div class="form-row">
 
                                         <div class="form-group col-sm-7">
-                                            <h5 for="inputNome">Usuário</h5>
+                                            <h5 for="inputNome">Login</h5>
                                             <input type="text" class="form-control" id="inputNome" name="login"
-                                                placeholder="Nome">
+                                                placeholder="Digite seu usuário ou email">
                                         </div>
 
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputSobrenome">Senha</h5>
-                                            <input type="text" class="form-control" id="inputSobrenome" name="senha"
+                                            <input type="password" class="form-control" id="inputSobrenome" name="senha"
                                                 placeholder="Senha">
                                         </div>
 
@@ -197,8 +197,8 @@
                                     <div class="form-row">
                                         <div class="col-sm-12">
                                             <button type="submit" class="btn btn-primary">Entrar</button>
-                                            <button type="submit" class="btn btn-danger ml-2">Cancelar</button>
-                                            <a tabindex="0" class="btn btn-secondary ml-5" role="button"
+                                            <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
+                                            <a tabindex="0" class="btn btn-info ml-5" role="button"
                                                 data-toggle="popover" data-placement="right" data-trigger="focus"
                                                 title="Ajuda"
                                                 data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
@@ -245,28 +245,32 @@
                                     <div class="form-row">
 
                                         <div class="form-group col-sm-8">
-                                            <label for="inputNome">Nome</label>
-                                            <input type="text" class="form-control" id="inputNome" name="usuario"
-                                                placeholder="Digite seu seu nome completo...">
+                                            <label for="inputNome">Usuário</label>
+                                            <input type="text" class="form-control" id="inputNome" name="usuario" require
+                                                placeholder="Digite seu nome de usuário...">
+                                                
                                         </div>
                                         <div class="form-group col-sm-8">
                                             <label for="inputEmail">Email</label>
-                                            <input type="text" class="form-control" id="inputEmail" name="email"
+                                            <input type="email" class="form-control" id="inputEmail" name="email" require
                                                 placeholder="Digite seu email...">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
                                             <label for="inputSenha">Senha</label>
-                                            <input type="text" class="form-control" id="inputSenha" name="senha"
+                                            <input type="password" class="form-control" id="inputSenha" name="senha" require
                                                 placeholder="Digite sua senha...">
+                                                <small id="passwordHelpInline" class="text-muted">
+                                                De 6 à 25 caracteres: letras, números e especiais (. _ -)
+                                                </small>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
                                             <label for="inputConfSenha">Confimar Senha</label>
-                                            <input type="text" class="form-control" id="inputConfSenha" name="confSenha"
-                                                placeholder="Confirme sua senha">
+                                            <input type="password" class="form-control" id="inputConfSenha" name="confSenha" require
+                                                placeholder="Confirme sua senha...">
                                         </div>
                                     </div>
 
@@ -285,8 +289,8 @@
                                     <div class="form-row">
                                         <div class="col-sm-12">
                                             <button type="submit" class="btn btn-primary">Enviar</button>
-                                            <button type="submit" class="btn btn-danger ml-2">Cancelar</button>
-                                            <a tabindex="0" class="btn btn-secondary ml-2" role="button"
+                                            <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
+                                            <a tabindex="0" class="btn btn-info ml-2" role="button"
                                                 data-toggle="popover" data-placement="right" data-trigger="focus"
                                                 title="Ajuda"
                                                 data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>

@@ -12,7 +12,6 @@
 </head>
 
 <body>
-<center>
 <!-- <form name="frmCadastro" method="post" action="">
     <table width="500" border="0">
         <tr>
@@ -41,7 +40,6 @@
         </tr>
     </table>
 </form> -->
-</center>
     <?php
 
     require "./includes/conexao.php";
@@ -54,18 +52,23 @@
 
     if (empty($usuario) || empty($email) || empty($senha) || empty($confSenha)) {
         //header("../cadastro.php?error=emptyfields&user=" . $usuario . "&email=" . $email);
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
         exit("<script>alert('Campos Vazios')</script>");
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9-_.]*$/", $usuario)) {
         //header("../cadastro.php?error=invalidemailuser");
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
         exit("<script>alert('Email e/ou senha inválidos')</script>");
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         //header("../cadastro.php?error=invalidemail&user=" . $usuario);
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
         exit("<script>alert('Email inválido')</script>");
     } elseif (!preg_match("/^[a-zA-Z0-9-_.]*$/", $usuario)) {
         //header("../cadastro.php?error=invaliduser&email=" . $email);
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
         exit("<script>alert('Senha inválida')</script>");
     } elseif ($senha !== $confSenha) {
         //header("../cadastro.php?error=passwordcheck&user=" . $usuario . "&email=" . $email);
+        echo "<meta http-equiv='refresh' content='0;url=index.php' />";
         exit("<script>alert('Senhas não coincidem')</script>");
     } else {
         $usuario = mysqli_escape_string($link, $usuario);
@@ -79,6 +82,7 @@
             if(!$result || mysqli_num_rows($result) > 0){        
             // $rows = mysqli_num_rows($result);
                 //header("../cadastro.php?error=usertaken&email=" . $email);
+                echo "<meta http-equiv='refresh' content='0;url=index.php' />";
                 echo "<script>alert('Usuario ja cadastrado')</script>";
             } else {            
                 $hash = password_hash($senha, PASSWORD_BCRYPT);
