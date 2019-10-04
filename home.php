@@ -1,4 +1,28 @@
 <!doctype html>
+<!--Estilo dos buttons-->
+<style type="text/css">
+    #btnFace{
+            color:#3b5998;
+            
+            background-color: #ffffff; 
+    }
+    
+    #btnFace:hover{
+            color:#ffffff;
+            background-color: #3b5998;    
+    }
+    
+    #btnInsta{
+        color: purple;
+        background-color: white;
+    }
+
+    #btnInsta:hover{
+        color: yellow;
+        background-color:purple;
+    }
+
+    </style>
 <html lang="pt-br">
   <head>
     <!-- Required meta tags -->
@@ -7,68 +31,124 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
-
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="icon" href="img/logotcc.png">
     <title>N.C. Works</title>
+  
   </head>
   <body>
+ 
+<b><p class="text-center my-3">Bem-vindos, e boa sorte na procura de um emprego ou funcionário!</p></b>
 
-<div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h1 class="display-4">Teste</h1>
-                    <p class="lead">
-                        jasjasn,asm dadwwdwajladw dawawiawln, mawdawdlhiawnk ,mawawnk mda
-                        awklndwlwaljdm ,awwalkawnm ,waawdlknaw m,wawald wma,awdanlk am,a
-                    </p>
-                    <hr>
-                    </div>
-                </div>
+<!--Slider-->
+<div class="container col-12">
+<center>
+<div id="slideSite" class="carousel slide col-7" data-ride="carousel">
 
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="nav nav-pills justify-content-center mb-3" id="pills-nav" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="nav-pills-01" data-toggle="pill" href="#nav-item-01">pão</a>
-                            </li>
+    <ol class="carousel-indicators">
+        <li data-target="#slideSite" data-slide-to="0" class="active"></li>
+        <li data-target="#slideSite" data-slide-to="1"></li>
+        <li data-target="#slideSite" data-slide-to="2"></li>
+        <li data-target="#slideSite" data-slide-to="3"></li>
+    </ol>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">hardiware</a>
-                            </li>
+    <div class="carousel-inner">
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="nav-pills-03" data-toggle="pill" href="#nav-item-03">é pegadinha garai</a>
-                            </li>
-                        </ul>
+        <div class="carousel-item active">
+            <img src="img/carrossel1.jpg" class="img-fluid d-block">
 
-                        <div class="tab-content" id="nav-pills-content">
-                            <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Jo_pQEc1wIo"></iframe>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p>Aqui veremos como o nikão é noia
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-item-02" role="tabpanel">
-                                ...02
-                            </div>
-                            <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
-                                ...03
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="carousel-caption d-none d-md-block">
+                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
+                <p>sdadasdasdsasasaasasaassasaasas</p>
             </div>
-</div>
 
+        </div>
+
+        <div class="carousel-item">
+            <img src="img/carrossel2.jpg" class="img-fluid d-block">
+
+            <div class="carousel-caption d-none d-md-block">
+                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
+                <p>sdadasdasdsasasaasasaassasaasas</p>
+            </div>
+
+        </div>
+
+        <div class="carousel-item">
+            <img src="img/carrossel3.jpg" class="img-fluid d-block">
+
+            <div class="carousel-caption d-none d-md-block">
+                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
+                <p>sdadasdasdsasasaasasaassasaasas</p>
+            </div>
+
+        </div>
+
+        <div class="carousel-item">
+            <img src="img/carrossel4.jpg" class="img-fluid d-block">
+
+            <div class="carousel-caption d-none d-md-block">
+                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
+                <p>sdadasdasdsasasaasasaassasaasas</p>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <a class="carousel-control-prev" href="#slideSite" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+
+    <a class="carousel-control-next" href="#slideSite" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="sr-only">Próximo</span>
+    </a>
+</center>
+</div>
+</div>
+<!--Cards-->
+<h3 class="text-center my-4">Oque o  NC_Works tem a oferecer para você!</h3>
+<div class="row justify-content-sm-center my-5">
+        <div class="col-sm-6 col-md-3">
+            <div class="card mb-5 ml-3 bg-primary">
+                <div class="card-body">
+                    <p><h2 class="card-title text-center">Vagas</h2></p>
+                    <p><h4 class="card-subtitle mb-2 text-center">Totalmente grátis para você</h4></p>
+                    <b><p class="card-text text-center">Para você ter melhor visibilidade e simplicidade para a visualização de vagas perto de você.</p></b>
+                </div>
+            </div>
+        </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="card mb-5 bg-primary">
+            <div class="card-body">
+                <p><h2 class="card-title text-center"></h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
+                <b><p class="card-text text-center"></p></b>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="card mb-5 bg-primary">
+            <div class="card-body">
+                <p><h2 class="card-title text-center"></h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
+                <b><p class="card-text text-center"></p></b>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="card mb-5 mr-3 bg-primary">
+            <div class="card-body">
+                <p><h2 class="card-title text-center"></h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
+                <b><p class="card-text text-center"></p></b>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <!--Rodapé-->
 <div class="container">
 <div class="row">
@@ -94,9 +174,9 @@
     <div class="col-sm-4">
         <h3>Social</h3>
         <div class="btn-group-vertical btn-block btn-group-lg" role="group">
-            <a class="btn btn-outline-secondary" href="#">Facebook</a>
             <a class="btn btn-outline-info" href="#">Twitter</a>
-            <a class="btn btn-outline-dark" href="#">Instagram</a>
+            <a class="btn btn-outline-info" id="btnFace"  href="#">Facebook</a>
+            <a class="btn btn-outline-info" id="btnInsta" href="#">Instagram</a>
         </div>
     </div>
 
@@ -110,7 +190,6 @@
     </div>
 </div>
 </div>
-
 <!--Modal Usuario-->
 <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -165,7 +244,6 @@
         </div>
     </div>
 </div>
-
 <!--Modal Cadastro-->
 <div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -261,6 +339,8 @@
             $('[data-toggle="popover"]').popover()
         })
     </script>
+
+    
 
   </body>
 </html>
