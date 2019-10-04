@@ -24,7 +24,8 @@
 
     </style>
 <html lang="pt-br">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -161,13 +162,6 @@
             </p>
         </div>
 
-    <div class="col-sm-4">
-        <h3>Menu</h3>
-        <div class="list-group text-center">
-            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Perfil</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Serviços</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Depoimentos</a>
-            <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Contatos</a>
         </div>
     </div>
 
@@ -223,24 +217,46 @@
                                 </div>
                                             
                             </div>
-                            <div class="form-row">
-                                <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-primary">Entrar</button>
-                                    <button type="submit" class="btn btn-danger ml-2">Cancelar</button>
-                                    <a tabindex="0" class="btn btn-secondary ml-5" role="button" data-toggle="popover" data-placement="right"
-                                    data-trigger="focus" title="Ajuda" data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
-                                </div>
+                        </div>
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+                                <form name="frmCadastro" method="post" action="login.php">
+                                    <div class="form-row">
+
+                                        <div class="form-group col-sm-7">
+                                            <h5 for="inputNome">Login</h5>
+                                            <input type="text" class="form-control" id="inputNome" name="login"
+                                                placeholder="Digite seu usuário ou email">
+                                        </div>
+
+                                        <div class="form-group col-sm-7">
+                                            <h5 for="inputSobrenome">Senha</h5>
+                                            <input type="password" class="form-control" id="inputSobrenome" name="senha"
+                                                placeholder="Senha">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary">Entrar</button>
+                                            <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
+                                            <a tabindex="0" class="btn btn-info ml-5" role="button"
+                                                data-toggle="popover" data-placement="right" data-trigger="focus"
+                                                title="Ajuda"
+                                                data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
 
+            </div>
         </div>
     </div>
 </div>
@@ -256,43 +272,63 @@
                 </button>
             </div>
 
-            <div class="modal-body">
+    <!--Modal Cadastro-->
+    <div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastro</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
                     <!--Cadastros-->
-    <div class="container"> 
-        <div class="row">
-            <div class="col-12 text-center my-5">
-                <h1 class="display-4">Cadastrar-se</h1>
-            </div>
-        </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center my-5">
+                                <h1 class="display-4">Cadastrar-se</h1>
+                            </div>
+                        </div>
 
-        <div class="row justify-content-center mb-5">
-            <div class="col-sm-12 col-md-10 col-lg-8">
-                <form  name="frmCadastro" method="post" action="cadastro.php">
-                    <div class="form-row">
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+                                <form name="frmCadastro" method="post" action="cadastro.php">
+                                    <div class="form-row">
 
-                    <div class="form-group col-sm-8">
-                           <label for="inputNome">Nome</label>
-                           <input type="text" class="form-control" id="inputNome" name="usuario" placeholder="Digite seu seu nome completo...">
-                       </div>
-                       <div class="form-group col-sm-8">
-                           <label for="inputEmail">Email</label>
-                           <input type="text" class="form-control" id="inputEmail" name="email" placeholder="Digite seu email...">
-                       </div>
-                   </div>
-                   <div class="form-row">
-                       <div class="form-group col-sm-8">
-                           <label for="inputSenha">Senha</label>
-                           <input type="text" class="form-control" id="inputSenha" name="senha" placeholder="Digite sua senha...">
-                       </div>
-                   </div>
-                   <div class="form-row">
-                       <div class="form-group col-sm-8">
-                           <label for="inputConfSenha">Confimar Senha</label>
-                           <input type="text" class="form-control" id="inputConfSenha" name="confSenha" placeholder="Confirme sua senha">
-                       </div>
-                   </div>
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputNome">Usuário</label>
+                                            <input type="text" class="form-control" id="inputNome" name="usuario" require
+                                                placeholder="Digite seu nome de usuário...">
+                                                
+                                        </div>
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputEmail">Email</label>
+                                            <input type="email" class="form-control" id="inputEmail" name="email" require
+                                                placeholder="Digite seu email...">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputSenha">Senha</label>
+                                            <input type="password" class="form-control" id="inputSenha" name="senha" require
+                                                placeholder="Digite sua senha...">
+                                                <small id="passwordHelpInline" class="text-muted">
+                                                De 6 à 25 caracteres: letras, números e especiais (. _ -)
+                                                </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputConfSenha">Confimar Senha</label>
+                                            <input type="password" class="form-control" id="inputConfSenha" name="confSenha" require
+                                                placeholder="Confirme sua senha...">
+                                        </div>
+                                    </div>
 
-                    <!-- <div class="form-row">
+                                    <!-- <div class="form-row">
                         <div class="form-group col-sm-12">
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -304,26 +340,28 @@
                             </div>
                         </div>
                     </div> -->
-                    <div class="form-row">
-                        <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                            <button type="submit" class="btn btn-danger ml-2">Cancelar</button>
-                            <a tabindex="0" class="btn btn-secondary ml-2" role="button" data-toggle="popover" data-placement="right"
-                            data-trigger="focus" title="Ajuda" data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
+                                    <div class="form-row">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="reset" class="btn btn-secondary ml-2">Limpar</button>
+                                            <a tabindex="0" class="btn btn-info ml-2" role="button"
+                                                data-toggle="popover" data-placement="right" data-trigger="focus"
+                                                title="Ajuda"
+                                                data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-            </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -335,12 +373,9 @@
     <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
     <script>
-        $(function (){
+        $(function () {
             $('[data-toggle="popover"]').popover()
         })
     </script>
-
-    
-
   </body>
 </html>
