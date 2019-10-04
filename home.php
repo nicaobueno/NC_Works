@@ -202,27 +202,9 @@
                         </div>
                     </div>
                     <div class="row justify-content-center mb-5">
-                        <div class="col-sm-12 col-md-10 col-lg-8">
-                            <form name="frmCadastro" method="post" action="login.php">
-                            <div class="form-row">
-                    
-                                <div class="form-group col-sm-7">
-                                    <h5 for="inputNome">Usuário</h5>
-                                    <input type="text" class="form-control" id="inputNome" name="login" placeholder="Nome">
-                                </div>
-                    
-                                <div class="form-group col-sm-7">
-                                    <h5 for="inputSobrenome">Senha</h5>
-                                    <input type="text" class="form-control" id="inputSobrenome" name="senha" placeholder="Senha">
-                                </div>
-                                            
-                            </div>
-                        </div>
-                        <div class="row justify-content-center mb-5">
                             <div class="col-sm-12 col-md-10 col-lg-8">
                                 <form name="frmCadastro" method="post" action="login.php">
                                     <div class="form-row">
-
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputNome">Login</h5>
                                             <input type="text" class="form-control" id="inputNome" name="login"
@@ -234,7 +216,6 @@
                                             <input type="password" class="form-control" id="inputSobrenome" name="senha"
                                                 placeholder="Senha">
                                         </div>
-
                                     </div>
                                     <div class="form-row">
                                         <div class="col-sm-12">
@@ -248,9 +229,8 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
                     </div>
-                </div>
+    
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
@@ -260,19 +240,8 @@
         </div>
     </div>
 </div>
+
 <!--Modal Cadastro-->
-<div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Cadastro</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-
-    <!--Modal Cadastro-->
     <div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

@@ -29,11 +29,17 @@ require("validar.php");
                 <tr>
                     <td>Profissão:</td>
                     <td>
-                        <select required name="profissao">
-                            <option value="volvo"></option>
-                            <option value="saab">Saab</option>
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
+                        <select name="profissao">
+                            <option value="0"></option>
+
+                            <?php
+                            require "./includes/conexao.php";
+
+                            $result = mysqli_query($link, "SELECT * FROM tb_profissao");                        
+                            while ($array = mysqli_fetch_array($result)) {
+                                echo "<option value='".$array["id_profissao"]."'>".$array["profissao"]."</option>";
+                            }
+                            ?>
                         </select>
                     </td>
                     <tr><td>Título:</td><td><input required type="text" name="titulo"></td></tr>
@@ -46,14 +52,15 @@ require("validar.php");
                 </tr>
                 <tr>
                     <tr><td>Indústria:</td><td><input required type="text" name="industria"></td></tr>
-                    <tr><td>Categoria:</td><td><input required type="text" name="categoria"></td></tr>
                     <tr><td>Período:</td><td><input required type="text" name="periodo"></td></tr>
                 </tr>
                 <tr>
                     <tr><td>Data Inicio:</td><td><input required type="date" name="inicio"></td></tr>
                     <tr><td>Data Fim:</td><td><input required type="date" name="fim"></td></tr>
-                    <tr><td>Ativo:</td><td><input type="radio" name="ativo"></td></tr>
-                    <tr><td>Confidencial:</td><td><input type="radio" name="confidencial"></td></tr>
+                    <tr><td>Ativa:</td><td><input type="radio" name="ativo" id="ativo" value="1"></td></tr>
+                    <tr><td>Inativa:</td><td><input type="radio" name="ativo" id="ativo" value="0"></td></tr>
+                    <tr><td>Público:</td><td><input type="radio" name="confidencial" id="confidencial" value="0"></td></tr>
+                    <tr><td>Confidencial:</td><td><input type="radio" name="confidencial" id="confidencial" value="1"></td></tr>
                 </tr>
         </table>
         <div class="d-flex justify-content-around">
@@ -67,7 +74,7 @@ require("validar.php");
 
     if(isset($_POST["submit"])){
         
-        require "./includes/conexao.php";
+        require_once "./includes/conexao.php";
 
         $profissao = $_POST["profissao"];
         $titulo = $_POST["titulo"];
@@ -76,7 +83,6 @@ require("validar.php");
         $funcao = $_POST["funcao"];
         $salario = $_POST["salario"];
         $industria = $_POST["industria"];
-        $categoria = $_POST["categoria"];
         $periodo = $_POST["periodo"];
         $dt_inicio = $_POST["inicio"];
         $dt_fim = $_POST["fim"];
@@ -88,7 +94,7 @@ require("validar.php");
             echo "<script>alert('Preencha todos os campos')</script>";
             exit;
         }else{
-            $sql = "INSERT INTO tb_vagas VALUES ('$profissao', '$titulo', '$descricao', '$requisitos', '$funcao', '$salario', '$industria', '$categoria', '$periodo', '$dt_inicio', '$dt_fim', '$ativo', '$confidencial')";
+            $sql = "INSERT INTO tb_vaga (`titulo`,`descricao`,`salario`,`requisitos`,`funcoes`,`industria`,`periodo`,`data_inicio`,`data_fim`,`ativo`,`confidencial`) VALUES ('$titulo', '$descricao', '$requisitos', '$funcao', '$salario', '$industria', '$periodo', '$dt_inicio', '$dt_fim', '$ativo', '$confidencial')";
             if (!$link) {
                 //header("../cadastro.php?error=sqlerror");
                 mysqli_connect_error();
@@ -100,6 +106,26 @@ require("validar.php");
         }
     }
 ?>
+<!-- INSERT INTO tb_vaga (`id_profissao`, `id_empresa`,`id_pessoa`,`titulo`,`descricao`,`salario`,`requisitos`,`funcoes`,`industria`,`categoria`,`periodo`,`data_inicio`,`data_fim`,`ativo`,`confidencial`) VALUES (1,1,1,'titulo', 'descricao', 'requisitos', 'funcao', 'salario', 'industria', 'categoria', 'periodo', '2019-10-04', '2019-11-04', '1', '1') -->
+
+    <!-- script para alertar o usuario sobre os radio button -->
+    <script>
+        var ativo = document.getElementById("ativo");
+        var confidencial = document.getElementById("confidencial");
+        ativo.addEventListener("focus", myFocusFunction, true);
+        ativo.addEventListener("blur", myBlurFunction, true);
+        confidencial.addEventListener("focus", myFocusFunction, true);
+        confidencial.addEventListener("blur", myBlurFunction, true);
+        function Focus() {
+            ativo.insertAdjacentText("afterend", "Selecione apenas um");
+            ativo.style.color = "red";
+        }
+
+        function Blur() {
+        document.getElementById("ativo").style.backgroundColor = "";
+        }
+    </script>
+
     <script src="bts/node_modules/jquery/dist/jquery.js"></script>
     <script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
     <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
