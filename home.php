@@ -153,36 +153,41 @@
 <!--Rodapé-->
 <div class="container">
 <div class="row">
-        <div class="col-12 mb-3"><hr></div>
+            <div class="col-12 mb-3"><hr></div>
 
-        <div class="col-sm-4">
-            <h3>NC_Works</h3>
-            <p>
-                É uma empresa dedicada a atender as necessidades dos clientes e das empresas que estão a procura de emprego ou funcionário, por isso damos o nosso melhor para que o site evolua com a ajuda de nossos clientes e colaboradores. Qualquer dúvida entre em contato conosco pelas nossas redes sociais. Agradecemos desde já!
-            </p>
-        </div>
+            <div class="col-sm-4">
+                <h3>NC_Works</h3>
+                <p>
+                    É uma empresa dedicada a atender as necessidades dos clientes e das empresas que estão a procura de emprego ou funcionário, por isso damos o nosso melhor para que o site evolua com a ajuda de nossos clientes e colaboradores. Qualquer dúvida entre em contato conosco pelas nossas redes sociais. Agradecemos desde já!
+                </p>
+            </div>
 
-        </div>
-    </div>
+            <div class="col-sm-4">
+                <h3>Menu</h3>
+                <div class="list-group text-center">
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Perfil</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Serviços</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Depoimentos</a>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Contatos</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h3>Social</h3>
+                <div class="btn-group-vertical btn-block btn-group-lg" role="group">
+                    <a class="btn btn-outline-info" href="#">Twitter</a>
+                    <a class="btn btn-outline-info" id="btnFace"  href="#">Facebook</a>
+                    <a class="btn btn-outline-info" id="btnInsta" href="#">Instagram</a>
+                </div>
+            </div>
 
-    <div class="col-sm-4">
-        <h3>Social</h3>
-        <div class="btn-group-vertical btn-block btn-group-lg" role="group">
-            <a class="btn btn-outline-info" href="#">Twitter</a>
-            <a class="btn btn-outline-info" id="btnFace"  href="#">Facebook</a>
-            <a class="btn btn-outline-info" id="btnInsta" href="#">Instagram</a>
-        </div>
-    </div>
-
-    <div class="col-12 mt-5">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0">
-                O sucesso não é garantido, mas o fracasso é certo se você não estiver emocinalmente envolvido em seu trabalho.
-            </p>
-            <footer class="blockquote-footer">Biz Stone<cite title="Titulo"> Fundador do Twitter</cite></footer>
-        </blockquote>
-    </div>
-</div>
+            <div class="col-12 mt-5">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">
+                        O sucesso não é garantido, mas o fracasso é certo se você não estiver emocinalmente envolvido em seu trabalho.
+                    </p>
+                    <footer class="blockquote-footer">Biz Stone<cite title="Titulo"> Fundador do Twitter</cite></footer>
+                </blockquote>
+            </div>
 </div>
 <!--Modal Usuario-->
 <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
@@ -218,6 +223,7 @@
                                             
                             </div>
                         </div>
+                    </form>
                         <div class="row justify-content-center mb-5">
                             <div class="col-sm-12 col-md-10 col-lg-8">
                                 <form name="frmCadastro" method="post" action="login.php">
@@ -283,51 +289,6 @@
                         <span>&times;</span>
                     </button>
                 </div>
-
-                <div class="modal-body">
-                    <!--Cadastros-->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 text-center my-5">
-                                <h1 class="display-4">Cadastrar-se</h1>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center mb-5">
-                            <div class="col-sm-12 col-md-10 col-lg-8">
-                                <form name="frmCadastro" method="post" action="cadastro.php">
-                                    <div class="form-row">
-
-                                        <div class="form-group col-sm-8">
-                                            <label for="inputNome">Usuário</label>
-                                            <input type="text" class="form-control" id="inputNome" name="usuario" require
-                                                placeholder="Digite seu nome de usuário...">
-                                                
-                                        </div>
-                                        <div class="form-group col-sm-8">
-                                            <label for="inputEmail">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail" name="email" require
-                                                placeholder="Digite seu email...">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="inputSenha">Senha</label>
-                                            <input type="password" class="form-control" id="inputSenha" name="senha" require
-                                                placeholder="Digite sua senha...">
-                                                <small id="passwordHelpInline" class="text-muted">
-                                                De 6 à 25 caracteres: letras, números e especiais (. _ -)
-                                                </small>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="inputConfSenha">Confimar Senha</label>
-                                            <input type="password" class="form-control" id="inputConfSenha" name="confSenha" require
-                                                placeholder="Confirme sua senha...">
-                                        </div>
-                                    </div>
-
                                     <!-- <div class="form-row">
                         <div class="form-group col-sm-12">
                             <div class="form-check">

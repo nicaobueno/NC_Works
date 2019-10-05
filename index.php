@@ -22,13 +22,12 @@
   <nav class="navbar nabar-fixed-top navbar-expand-lg navbar-light bg-primary">
     <div class="container">
 
-      <a class="navbar-brand h1 mb-0" href="index.php"><img id="logocabeca" src="img/logotcc.png" title="N.C. Works"
-          alt="N.C. Works" height="40px" width="40px"></a>
+    <a class="navbar-brand h1 mb-0" href="index.html"><img id="logocabeca" src="img/logotcc.png" title="N.C. Works" alt="N.C. Works" height="40px" width="40px"></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <ul class="collapse navbar-collapse" id="navbarSite">
+      <div class="collapse navbar-collapse" id="navbarSite">
 
         <ul class="navbar-nav mr-auto">
 
@@ -53,7 +52,6 @@
             }
           ?>
         </ul>
-
         <!-- Apresentação do usuario na seção -->
         <?php
               if(isset($_SESSION["nome"])){
@@ -75,7 +73,7 @@
                   
               }
             ?>
-      </ul>
+      </div>
     </div>
   </nav>
   <!-- usando GET para dar include nas paginas -->
