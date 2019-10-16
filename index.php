@@ -1,4 +1,5 @@
 <?php
+  error_reporting(0);
   session_start();
 ?>
 <!doctype html>
@@ -19,67 +20,93 @@
 <body class="bg-light">
 
   <!--Cabeçalho-->
-  <nav class="navbar nabar-fixed-top navbar-expand-lg navbar-light bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary d-flex flex-column sticky-top">
     <div class="container">
-
-      <a class="navbar-brand h1 mb-0" href="index.php"><img id="logocabeca" src="img/logotcc.png" title="N.C. Works"
-          alt="N.C. Works" height="40px" width="40px"></a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+      <a class="navbar-brand" href="index.php"><img src="./img/logotcc.png" title="N.C. Works" alt="N.C. Works"
+          height="35px" width="35px" /></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSite">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <ul class="collapse navbar-collapse" id="navbarSite">
+      <div class="collapse navbar-collapse" id="navbarSite">
+        <div class="navbar-nav mt-2 mt-lg-0">
+          <?php 
+                if(!isset($_SESSION["login"])){
+                  echo '<div class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal">Entrar</a>
+                </div>
+                <div class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
+                </div>
+                <div class="nav-item">
+                  <a class="nav-link" href="#">Empresas</a>
+                </div>
+                ';
+                }
 
-        <ul class="navbar-nav mr-auto">
+              ?>
 
-          <li class="nav-item">
-            <a class="nav-link" href="?action=entrar" data-toggle="modal" data-target="#siteModal">Entrar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="?action=cadastrar" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Empresas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Entre em contato</a>
-          </li>
+          <div class="nav-item">
+            <a class="nav-link" href="#">Contato</a>
+          </div>
           <?php
-            if(isset($_SESSION["nome"])){
-              $usuario = $_SESSION["nome"];
-              echo  "<li class='nav-item'>
-              <a class='nav-link' href='cadastrar_vaga.php'>Cadastrar Vagas</a>
-            </li>"; //?action=cadastrar_vaga
-            }
-          ?>
-        </ul>
+                  //validar.php
+                  if(isset($_SESSION["login"])){
+                    $u = $_SESSION["nome"];
+                    require_once "./includes/conexao.php";
+                    if(filter_var($u, FILTER_VALIDATE_EMAIL)){
+                      $sql = "SELECT tipo FROM tb_usuario WHERE email='$u'";
+                    }else{
+                      $sql = "SELECT tipo FROM tb_usuario WHERE usuario='$u'";
+                    }
+                    $result = mysqli_query($link, $sql);
+                    $array = mysqli_fetch_array($result);
+                    if($array["tipo"] == "juridica"){
+                        $_SESSION["tipo"] = "empresa";
+                    }elseif($array["tipo"] == "fisica"){
+                        $_SESSION["tipo"] = "pessoa";
+                    }
+                    echo "<div class='nav-item'>
+                    <a class='nav-link' href='?action=pesquisar_vaga'>Pesquisar Vagas</a>
+                  </div>";
+                    //CRIA CADASTRAR VAGA CASO SEJA EMPRESA
+                    if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == "empresa"){
+                      echo  "
+                      <div class='nav-item'>
+                        <a class='nav-link' href='?action=cadastrar_vaga'>Cadastrar Vagas</a>
+                      </div>
+                    "; //?action=cadastrar_vaga
+                  }
+                }
+              ?>
 
+
+        </div>
         <!-- Apresentação do usuario na seção -->
         <?php
-              if(isset($_SESSION["nome"])){
-                  $usuario = $_SESSION["nome"];
-                  // echo "<div class='navbar-nav ml-auto'>";
-                  echo "<ul class='navbar-nav'>";
-                  echo "<li class='nav-item'><a class='btn btn-outline-light' href='?action=perfil'>$usuario</a></li>";
-                  echo "&nbsp &nbsp";
-                  echo "<li class='nav-item dropdown'>
-                          <a class='nav-link dropdown-toggle' href='' data-toggle='dropdown' id='navDrop'></a>                   
+                if(isset($_SESSION["nome"])){
+                    $usuario = $_SESSION["nome"];
+                    echo "
+                    <div class='navbar-nav d-flex flex-row ml-auto'>
+                      <div class='nav-item'><a class='btn btn-outline-light' href='?action=perfil'>$usuario</a></div>
+                      &nbsp &nbsp
+                      <div class='nav-item dropdown'>
+                          <a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'></a>                   
                           <div class='dropdown-menu navbar-dark bg-primary'>
                             <a class='dropdown-item' href='#'>Configurações</a>
                             <a class='dropdown-item bg-danger' href='sair.php'>Sair</a>
                           </div>
-                        </li>";
-                  // echo "<li class='nav-item'><a href='sair.php'><button class='btn btn-danger'>Sair</button></a></li>";
-                  echo "</ul>";
-                  // echo "</div>";
-                  
-              }
-            ?>
-      </ul>
+                      </div>
+                    </div>
+                    ";
+                }
+        ?>
+      </div>
     </div>
   </nav>
   <!-- usando GET para dar include nas paginas -->
-  <?php
+  <div class="container">
+
+    <?php
         if (isset($_GET["action"])) {
             switch ($_GET["action"]) {
                 case 'cadastrar':
@@ -98,15 +125,21 @@
                     $incluir = "perfil.php";
                     break;
                 case 'cadastrar_vaga':
-                $incluir = "cadastrar_vaga.php";
-                break;
-                  
+                    $incluir = "cadastrar_vaga.php";
+                    break;
+                case 'pesquisar_vaga':
+                    $incluir = "pesquisar_vaga.php";
+                    break;  
+                case 'detalhes_vaga':
+                    $incluir = "detalhes_vaga.php";
+                    break; 
             }
             include($incluir);
         }else{
            include("home.php");
         }
     ?>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="bts/node_modules/jquery/dist/jquery.js"></script>
@@ -114,26 +147,25 @@
   <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
   <script>
-    $(function () {
-      $('[data-toggle="popover"]').popover()
-    })
+    // $(function () {
+    //   $('[data-toggle="popover"]').popover()
+    // })
   </script>
   <script>
     $(function () {
-        $('.dropdown-toggle').dropdown();
-    }); 
+      $('.dropdown-toggle').dropdown();
+    });
   </script>
+  <script>
+    // $(function () {
+    //   $('.dropdown-toggle').dropdown();
+    // });
+
+    // $(".nav-link").on("click", function () {
+    //   $('.navbar-collapse').collapse('hide');
+    // });
+  </script>
+
 </body>
 
-        <script>
-          $(function () {
-              $('.dropdown-toggle').dropdown();
-          }); 
-          
-          $(".nav-link").on("click", function(){
-          $('.navbar-collapse').collapse('hide');
-          });
-        </script>
-
-  </body>
 </html>
