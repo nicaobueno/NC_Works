@@ -73,7 +73,8 @@
                 //header("../cadastro.php?error=usertaken&email=" . $email);                
                 // echo "<meta http-equiv='refresh' content='0;url=login.php' />";
                echo "<script>alert('Usuário/email ou senha incorretos')</script>";
-               exit("<meta http-equiv='refresh' content='0;url=index.php' />");
+               echo "<meta http-equiv='refresh' content='0;url=index.php' />";
+               exit;
             }elseif(password_verify($senha, $array["senha"]) == true){
                 $nome = $array["usuario"];
                 $_SESSION["login"] = $login;
