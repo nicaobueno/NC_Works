@@ -1,30 +1,5 @@
 <!doctype html>
-<!--Estilo dos buttons-->
-<style type="text/css">
-    #btnFace{
-            color:#3b5998;
-            
-            background-color: #ffffff; 
-    }
-    
-    #btnFace:hover{
-            color:#ffffff;
-            background-color: #3b5998;    
-    }
-    
-    #btnInsta{
-        color: purple;
-        background-color: white;
-    }
-
-    #btnInsta:hover{
-        color: yellow;
-        background-color:purple;
-    }
-
-    </style>
 <html lang="pt-br">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,16 +7,48 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <link rel="icon" href="img/logotcc.png">
-    <title>N.C. Works</title>
-  
-  </head>
-  <body>
- 
-<b><p class="text-center my-3">Bem-vindos, e boa sorte na procura de um emprego ou funcionário!</p></b>
 
-<!--Slider-->
+    <!--Estilo dos buttons-->
+    <style type="text/css">
+        #btnFace {
+            color: #3b5998;
+            background-color: #ffffff;
+        }
+
+        #btnFace:hover {
+            color: #ffffff;
+            background-color: #3b5998;
+        }
+
+        #btnInsta {
+            color: purple;
+            background-color: white;
+        }
+
+        #btnInsta:hover {
+            color: yellow;
+            background-color: purple;
+        }
+
+        #btnTt {
+            color: rgba(29, 161, 242, 1.00);
+            background-color: white;
+        }
+
+        #btnTt:hover {
+            color: white;
+            background-color: rgba(29, 161, 242, 1.00);
+        }
+    </style>
+
+    <title>N.C. Works</title>
+</head>
+
+<body class="bg-light">
+<b>
+    <p class="text-center my-3">Bem-vindos ao N.C. Works, e boa sorte na procura de um emprego ou funcionário!</p>
+</b>
+
 <div class="container col-12">
 <center>
 <div id="slideSite" class="carousel slide col-7" data-ride="carousel">
@@ -152,13 +159,18 @@
 </div>
 <!--Rodapé-->
 <div class="container">
-<div class="row">
-            <div class="col-12 mb-3"><hr></div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <hr>
+            </div>
 
             <div class="col-sm-4">
                 <h3>NC_Works</h3>
                 <p>
-                    É uma empresa dedicada a atender as necessidades dos clientes e das empresas que estão a procura de emprego ou funcionário, por isso damos o nosso melhor para que o site evolua com a ajuda de nossos clientes e colaboradores. Qualquer dúvida entre em contato conosco pelas nossas redes sociais. Agradecemos desde já!
+                    É uma empresa dedicada a atender as necessidades dos clientes e das empresas que estão a procura de
+                    emprego ou funcionário, por isso damos o nosso melhor para que o site evolua com a ajuda de nossos
+                    clientes e colaboradores. Qualquer dúvida entre em contato conosco pelas nossas redes sociais.
+                    Agradecemos desde já!
                 </p>
             </div>
 
@@ -171,11 +183,12 @@
                     <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Contatos</a>
                 </div>
             </div>
+
             <div class="col-sm-4">
                 <h3>Social</h3>
                 <div class="btn-group-vertical btn-block btn-group-lg" role="group">
-                    <a class="btn btn-outline-info" href="#">Twitter</a>
-                    <a class="btn btn-outline-info" id="btnFace"  href="#">Facebook</a>
+                    <a class="btn btn-outline-info" id="btnFace" href="#">Facebook</a>
+                    <a class="btn btn-outline-info" id="btnTt" href="#">Twitter</a>
                     <a class="btn btn-outline-info" id="btnInsta" href="#">Instagram</a>
                 </div>
             </div>
@@ -183,47 +196,32 @@
             <div class="col-12 mt-5">
                 <blockquote class="blockquote text-center">
                     <p class="mb-0">
-                        O sucesso não é garantido, mas o fracasso é certo se você não estiver emocinalmente envolvido em seu trabalho.
+                        O sucesso não é garantido, mas o fracasso é certo se você não estiver emocinalmente envolvido em
+                        seu trabalho.
                     </p>
                     <footer class="blockquote-footer">Biz Stone<cite title="Titulo"> Fundador do Twitter</cite></footer>
                 </blockquote>
             </div>
+        </div>
 </div>
+
 <!--Modal Usuario-->
 <div class="modal fade" id="siteModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Login</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container"> 
-                    <div class="row">
-                        <div class="col-12 text-center my-5">
-                            <h1 class="display-4">Entrar</h1>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center mb-5">
-                        <div class="col-sm-12 col-md-10 col-lg-8">
-                            <form name="frmCadastro" method="post" action="login.php">
-                            <div class="form-row">
-                    
-                                <div class="form-group col-sm-7">
-                                    <h5 for="inputNome">Usuário</h5>
-                                    <input type="text" class="form-control" id="inputNome" name="login" placeholder="Nome">
-                                </div>
-                    
-                                <div class="form-group col-sm-7">
-                                    <h5 for="inputSobrenome">Senha</h5>
-                                    <input type="text" class="form-control" id="inputSobrenome" name="senha" placeholder="Senha">
-                                </div>
-                                            
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center my-5">
+                                <h1 class="display-4">Entrar</h1>
                             </div>
                         </div>
-                    </form>
                         <div class="row justify-content-center mb-5">
                             <div class="col-sm-12 col-md-10 col-lg-8">
                                 <form name="frmCadastro" method="post" action="login.php">
@@ -264,22 +262,10 @@
 
             </div>
         </div>
-    </div>
 </div>
+
 <!--Modal Cadastro-->
 <div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Cadastro</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-
-    <!--Modal Cadastro-->
-    <div class="modal fade" id="siteModal1" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
 
@@ -289,6 +275,51 @@
                         <span>&times;</span>
                     </button>
                 </div>
+
+                <div class="modal-body">
+                    <!--Cadastros-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 text-center my-5">
+                                <h1 class="display-4">Cadastrar-se</h1>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center mb-5">
+                            <div class="col-sm-12 col-md-10 col-lg-8">
+                                <form name="frmCadastro" method="post" action="cadastro.php">
+                                    <div class="form-row">
+
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputNome">Usuário</label>
+                                            <input type="text" class="form-control" id="inputNome" name="usuario" require
+                                                placeholder="Digite seu nome de usuário...">
+                                                
+                                        </div>
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputEmail">Email</label>
+                                            <input type="email" class="form-control" id="inputEmail" name="email" require
+                                                placeholder="Digite seu email...">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputSenha">Senha</label>
+                                            <input type="password" class="form-control" id="inputSenha" name="senha" require
+                                                placeholder="Digite sua senha...">
+                                                <small id="passwordHelpInline" class="text-muted">
+                                                De 6 à 25 caracteres: letras, números e especiais (. _ -)
+                                                </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-8">
+                                            <label for="inputConfSenha">Confimar Senha</label>
+                                            <input type="password" class="form-control" id="inputConfSenha" name="confSenha" require
+                                                placeholder="Confirme sua senha...">
+                                        </div>
+                                    </div>
+
                                     <!-- <div class="form-row">
                         <div class="form-group col-sm-12">
                             <div class="form-check">
@@ -322,7 +353,7 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
 
 
@@ -338,5 +369,7 @@
             $('[data-toggle="popover"]').popover()
         })
     </script>
-  </body>
+
+</body>
+
 </html>
