@@ -86,44 +86,48 @@ if (isset($_POST["submit"])) {
 			//$sql = "SELECT * FROM `tb_vaga` WHERE `titulo` LIKE '%".$pesquisa."%' OR `descricao` LIKE '%".$pesquisa."%' ORDER BY ativo DESC, vizualizacoes DESC, titulo ASC";
 			$sql = "SELECT * FROM `tb_vaga` LEFT JOIN tb_profissao ON tb_vaga.id_profissao = tb_profissao.id_profissao WHERE `titulo` LIKE '%".$pesquisa."%' OR `descricao` LIKE '%".$pesquisa."%' ORDER BY ativo DESC, vizualizacoes DESC, titulo ASC";
 			$r = mysqli_query($link, $sql) or die("Erro!");
-
-			while ($a = mysqli_fetch_array($r)){
-				$profissao = $a["profissao"];
-				$id_vaga = $a["id_vaga"];
-				$id = $a["id_profissao"];
-				$titulo = $a["titulo"];
-				$descricao = $a["descricao"];
-				$ativo = $a["ativo"];
-				//style='background-color: #868e96; color:White'
-				if ($ativo == 1) {
-				
-					if(!array_search($id, $id_mostrado)){
-						echo "
-						<hr />
-						<div>
-							<div class='container d-block' style='box-shadow: 0 4px 10px 0 rgba(215, 156, 255, 0.3);'>
-									<div class='container'>
-										<br />
-										<span class='d-inline' style='font-size:20px;color:blue'>Vaga de $profissao</span>
-										<br />
-										<span style='font-size:14px'><b>Id: </b>$id_vaga</span>
-										<br />
-										<span style='font-size:14px'><b>Titulo: </b>$titulo</span>
-										<br />
-										<span style='font-size:14px'><b>Descrição: </b>$descricao</span>
-										<br /><br />
-										<a href='?action=detalhes_vaga&id=$id_vaga'><input type='button' class='btn btn-outline-info' style='cursor:pointer' value='Ver mais detalhes...' /></a>
-										<br /><br />
+			if (mysqli_num_rows($r) <= 0) {
+				echo "<center><h4 style='color:#8a9602'><i>Não foi encontrado nada!</i></h4></center>";
+			}else{
+				while ($a = mysqli_fetch_array($r)){
+					$profissao = $a["profissao"];
+					$id_vaga = $a["id_vaga"];
+					$id = $a["id_profissao"];
+					$titulo = $a["titulo"];
+					$descricao = $a["descricao"];
+					$ativo = $a["ativo"];
+					//style='background-color: #868e96; color:White'
+					if ($ativo == 1) {
+						if(!array_search($id, $id_mostrado)){
+							echo "
+							<hr />
+							<div>
+								<div class='container d-block' style='box-shadow: 0 4px 10px 0 rgba(215, 156, 255, 0.3);'>
+										<div class='container'>
+											<br />
+											<span class='d-inline' style='font-size:20px;color:blue'>Vaga de $profissao</span>
+											<br />
+											<span style='font-size:14px'><b>Id: </b>$id_vaga</span>
+											<br />
+											<span style='font-size:14px'><b>Titulo: </b>$titulo</span>
+											<br />
+											<span style='font-size:14px'><b>Descrição: </b>$descricao</span>
+											<br /><br />
+											<a href='?action=detalhes_vaga&id=$id_vaga'><input type='button' class='btn btn-outline-info' style='cursor:pointer' value='Ver mais detalhes...' /></a>
+											<br /><br />
+										</div>
 									</div>
-								</div>
-						</div>
-						";
-						array_push($id_mostrado, $id);
+							</div>
+							";
+							array_push($id_mostrado, $id);
+						}
 					}
 				}
 			}
 		}
 	}
+}else{
+	
 }
 ?>
 

@@ -87,7 +87,7 @@
                         <span>/ <i>$contrato</i></span>
 
                         <div class='float-lg-right d-flex align-items-center' style='padding-top:10px'>
-                            <span><button style='width:350px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
+                            <span><button style='width:250px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
                         </div>
 
                         <div style='padding-top:10px'>
@@ -160,7 +160,7 @@
                         <br />
                         <center>
                         <div>
-                            <span><button style='width:350px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
+                            <span><button style='width:250px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
                         </div>
                         </center>
                         <br />
