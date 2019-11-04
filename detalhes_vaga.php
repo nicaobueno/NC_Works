@@ -87,7 +87,16 @@
                         <span>/ <i>$contrato</i></span>
 
                         <div class='float-lg-right d-flex align-items-center' style='padding-top:10px'>
-                            <span><button style='width:250px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
+                            "; 
+                            if($_SESSION["vaga_ocupada"] == 0){
+                                echo "<form action='' method='post'>
+                                <span><button style='width:250px;height:50px' name='candidatar' type='submit' class='btn btn-success'>Candidatar-se</button></span>
+                            </form>";  
+                            }else{
+                                echo "<span><input type='button' style='width:300px;height:50px' class='btn btn-dark' value='Você está inscrito para a vaga'/></span>";
+                            }
+                        echo "
+
                         </div>
 
                         <div style='padding-top:10px'>
@@ -157,12 +166,24 @@
                         <br />
                         <span>$localidade</span>
                         <br />
-                        <br />
-                        <center>
-                        <div>
-                            <span><button style='width:250px;height:50px' class='btn btn-success'>Candidatar-se</button></span>
-                        </div>
-                        </center>
+                        <br />";
+                        if($_SESSION["vaga_ocupada"] == 1){
+                        echo "
+                            <center>
+                                <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                                    <span class='text-dark'>Deseja desistir da vaga?</span></br><br>
+                                    <form action='' method='post'>
+                                        <span><button style='width:250px;height:50px' name='desistir' type='submit' class='btn btn-danger'>Desistir</button></span>
+                                    </form>
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
+                                    </button>
+                                </div>                              
+                            </center>
+                        ";
+                        }
+                        echo "
+                        
                         <br />
                     </div>
                 </div>
@@ -171,12 +192,68 @@
             <br />
         </div>
             ";
+            //INSCREVE USUARIO NA VAGA
+            if (isset($_POST["candidatar"])) {
+                
+                $id_usuario = $_SESSION["id_usuario"];
+                $sql = "SELECT id_pessoa FROM tb_vaga WHERE id_vaga = $id";
+                $query = mysqli_query($link, $sql);
+                $a = mysqli_fetch_array($query);
+                if ($a["id_pessoa"] === null) {
+                    //inscreve o PRIMEIRO usuario na vaga
+                    $id_usuario = array($id_usuario);
+                    $candidatos = serialize($id_usuario[0]);
+                    $query = mysqli_query($link, "UPDATE tb_vaga AS v SET v.id_pessoa = '$candidatos' WHERE id_vaga = $id") or die(mysql_error($link));
+                    $_SESSION["vaga_ocupada"] = 1;
+                    echo "<meta http-equiv='refresh' content='0;url=index.php?action=detalhes_vaga&id=$id' />";
+                }else{
+                    //recupera os id's dos candidatos
+                    $candidatos = unserialize($a["id_pessoa"]);
+                    if(!is_array($candidatos)){
+                        $candidatos = array($candidatos);
+                    }
+                    //$candidatos = explode(' ', $a[0]);
+                    //verifica se o candidato ja esta inscrito na vaga
+                    if (in_array($id_usuario, $candidatos)) {
+                        $_SESSION["vaga_ocupada"] = 1;
+                        echo "<meta http-equiv='refresh' content='0;url=index.php?action=detalhes_vaga&id=$id' />";
+                    }else{
+                        //inscreve o usuario na vaga
+                        array_push($candidatos, $id_usuario);
+                        $candidatos = serialize($candidatos);
+                        $query = mysqli_query($link, "UPDATE tb_vaga AS v SET v.id_pessoa = '$candidatos' WHERE id_vaga = $id") or die(mysql_error($link));
+                        $_SESSION["vaga_ocupada"] = 1;
+                        echo "<meta http-equiv='refresh' content='0;url=index.php?action=detalhes_vaga&id=$id' />";
+                    }
+                } 
+            }
+
+            //DESINSCREVE USUARIO DA VAGA
+            if (isset($_POST["desistir"])) {
+                
+                $id_usuario = $_SESSION["id_usuario"];
+                $sql = "SELECT id_pessoa FROM tb_vaga WHERE id_vaga = $id";
+                $query = mysqli_query($link, $sql);
+                $a = mysqli_fetch_array($query);
+                $candidatos = unserialize($a["id_pessoa"]);
+                var_dump($candidatos);
+                if (in_array($id_usuario, $candidatos)) {
+                    $key = array_search($id_usuario, $candidatos);
+                    unset($candidatos[$key]);
+                    $_SESSION["vaga_ocupada"] = 0;
+                    echo "<meta http-equiv='refresh' content='0;url=index.php?action=detalhes_vaga&id=$id' />";
+                }
+                $candidatos = serialize($candidatos);
+                $query = mysqli_query($link, "UPDATE tb_vaga AS v SET v.id_pessoa = '$candidatos' WHERE id_vaga = $id") or die(mysql_error($link)); 
+            }
         }
     }else{
         echo "<center><span class='h4 text-danger'>Selecione uma vaga!</span></center>";
     }
-    
     ?>
 </body>
+
+<script>$('.alert').alert()</script>
+
 
 </html>

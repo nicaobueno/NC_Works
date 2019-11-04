@@ -46,20 +46,21 @@
     <?php
             require "./includes/conexao.php";
 
-            $login = $_POST["login"];
-            $senha = $_POST["senha"];
+            $login = trim($_POST["login"]);
+            $senha = trim($_POST["senha"]);
 
             if(filter_var($login, FILTER_VALIDATE_EMAIL)){
                 $login = mysqli_escape_string($link, $login);
                 $senha = mysqli_escape_string($link, $senha);
 
-                $sql = "SELECT usuario, email, senha FROM tb_usuario WHERE email='$login'";
-            }else{
-                $login = mysqli_escape_string($link, $login);
-                $senha = mysqli_escape_string($link, $senha);
+                $sql = "SELECT * FROM tb_usuario WHERE email='$login'";
+            }
+            // else{
+            //     $login = mysqli_escape_string($link, $login);
+            //     $senha = mysqli_escape_string($link, $senha);
 
-                $sql = "SELECT usuario, email, senha FROM tb_usuario WHERE usuario='$login'";
-            }            
+            //     $sql = "SELECT usuario, email, senha FROM tb_usuario WHERE usuario='$login'";
+            // }            
 
             if (!$link) {
             //header("../cadastro.php?error=sqlerror");
@@ -68,7 +69,7 @@
         }else {    
             $result = mysqli_query($link, $sql) or die("Erro!"); 
             $array = mysqli_fetch_array($result);             
-            if(!$result || mysqli_num_rows($result) <= 0){        
+            if(!$result || mysqli_num_rows($result) <= 0 || $array["apagado"] == 1){        
                 // $rows = mysqli_num_rows($result);
                 //header("../cadastro.php?error=usertaken&email=" . $email);                
                 // echo "<meta http-equiv='refresh' content='0;url=login.php' />";
@@ -77,9 +78,16 @@
                exit;
             }elseif(password_verify($senha, $array["senha"]) == true){
                 $nome = $array["usuario"];
+                $id_usuario = $array["id_usuario"];
+                if($array["tipo"] == "juridica"){
+                    $_SESSION["tipo"] = "empresa";
+                }elseif($array["tipo"] == "fisica"){
+                    $_SESSION["tipo"] = "pessoa";
+                }
                 $_SESSION["login"] = $login;
                 $_SESSION["senha"] = $senha;
                 $_SESSION["nome"] = $nome;
+                $_SESSION["id_usuario"] = $id_usuario;
                 // $sql = "SELECT * FROM tb_usuario WHERE usuario='$login'";
                 // $result = mysqli_query($link, $sql) or die("Erro!"); 
                 // $array = mysqli_fetch_array($result);

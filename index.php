@@ -2,6 +2,7 @@
   error_reporting(0);
   session_start();
 ?>
+
 <!doctype html>
 <html lang="pt-br">
 
@@ -145,6 +146,7 @@
   <script src="bts/node_modules/jquery/dist/jquery.js"></script>
   <script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
   <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="js/functions.js"></script>
 
   <script>
     // $(function () {
