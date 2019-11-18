@@ -230,13 +230,13 @@
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputNome">Login</h5>
                                             <input type="text" class="form-control" id="inputNome" name="login"
-                                                placeholder="Digite seu usuário ou email">
+                                                placeholder="Digite seu email...">
                                         </div>
 
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputSobrenome">Senha</h5>
                                             <input type="password" class="form-control" id="inputSobrenome" name="senha"
-                                                placeholder="Senha">
+                                                placeholder="Digite sua senha...">
                                         </div>
 
                                     </div>

@@ -119,5 +119,14 @@ require "./validar.php";
 
 
 
+<<<<<<< HEAD
+=======
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="bts/node_modules/jquery/dist/jquery.js"></script>
+<script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
+<script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+>>>>>>> b0e9f1c81d107e98c5f88ff59eefcd738b4a2cff
 </body>
 </html>
