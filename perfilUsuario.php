@@ -1,3 +1,7 @@
+<?php
+require "./validar.php";
+?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -6,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="css/zxc.css">
+<link rel="stylesheet" href="css/qwe.css">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
@@ -17,8 +21,8 @@
 <div class="container">
 <div id="input_capa">
     <input type="file" id="input_img">
-    <img src="img/editar.png" id="editar" width="25px" height="25px">
-</div>
+        <img src="img/editar.png" id="editar" width="25px" height="25px">
+    </div>
     <div id="caixa">
         <div>
             <div id="capa">
@@ -42,9 +46,6 @@
                         <li class="nav-item ml-3 my-2"><a class="btn btn-outline-primary" href="https://www.facebook.com">Contatos</a></li>
                     </ul>
                 </div>
-                <div id="vagasDisponiveis">
-                    <a id="asdasd" href="#">Vagas Disponiveis &nbsp<img id="seta" src="https://img.icons8.com/ios/50/000000/right.png"></a>
-                </div>
             </div>
         </div>
     </div>
@@ -52,7 +53,6 @@
         <img src="img/vagasdeempregos.jpg" id="patrocinador">
     </div>
 </div>
-
 
 
 
