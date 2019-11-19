@@ -54,6 +54,10 @@
                 $senha = mysqli_escape_string($link, $senha);
 
                 $sql = "SELECT * FROM tb_usuario WHERE email='$login'";
+            }else{
+                echo "<script>alert('Email inválido')</script>";
+                echo "<meta http-equiv='refresh' content='0;url=index.php' />";                
+                exit;
             }
             // else{
             //     $login = mysqli_escape_string($link, $login);
@@ -61,19 +65,14 @@
 
             //     $sql = "SELECT usuario, email, senha FROM tb_usuario WHERE usuario='$login'";
             // }            
-
-            if (!$link) {
-            //header("../cadastro.php?error=sqlerror");
-            mysqli_connect_error();
-            exit;
-        }else {    
+             
             $result = mysqli_query($link, $sql) or die("Erro!"); 
             $array = mysqli_fetch_array($result);             
             if(!$result || mysqli_num_rows($result) <= 0 || $array["apagado"] == 1){        
                 // $rows = mysqli_num_rows($result);
                 //header("../cadastro.php?error=usertaken&email=" . $email);                
                 // echo "<meta http-equiv='refresh' content='0;url=login.php' />";
-               echo "<script>alert('Usuário/email ou senha incorretos')</script>";
+               echo "<script>alert('Email e/ou senha incorretos')</script>";
                echo "<meta http-equiv='refresh' content='0;url=index.php' />";
                exit;
             }elseif(password_verify($senha, $array["senha"]) == true){
@@ -94,12 +93,15 @@
                 // $nome = $array["usuario"];
                 
                 // echo("<script>alert('Logado com Sucesso!')</script>");                                                
-                setcookie("login",$login);                
+                // setcookie("login",$login);
+                echo "<script>alert('Logado com sucesso!')</script>";
                 echo "<meta http-equiv='refresh' content='0;url=index.php' />";                
                 exit;
-            }        
-            
-    }
+            }else{
+                echo "<script>alert('Senha incorreta')</script>";
+                echo "<meta http-equiv='refresh' content='0;url=index.php' />";
+                exit;
+            } 
         
     ?>
 

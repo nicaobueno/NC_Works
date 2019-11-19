@@ -1,11 +1,3 @@
-<!-- PHP PATH -->
-<!-- 
-"php.suggest.basic": false,
-"php.executablePath": "C:/wamp64/bin/php/php7.1.9/php.exe",
-"php.validate.executablePath": "C:/wamp64/bin/php/php7.1.9/php.exe",
-"phpfmt.php_bin": "C:/wamp64/bin/php/php7.1.9/php.exe 
--->
-
 <?php
 $host = "localhost";
 $user = "root";

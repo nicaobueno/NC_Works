@@ -15,8 +15,8 @@
                 <h5 class="d-inline-block p-2 bg-secondary text-white">Deseja cadastrar outra vaga?</h5>
                 <br>
                 <div>
-                    <a href="./cadastrar_vaga.php"><input class="btn btn-success" type="button" value="Sim"></a>
-                    <a href="./index.php"><input class="btn btn-danger" type="button" value="Não"></a>
+                    <a href="index.php?action=cadastrar_vaga"><input class="btn btn-success" type="button" value="Sim"></a>
+                    <a href="index.php"><input class="btn btn-danger" type="button" value="Não"></a>
                 </div>
         </div>
     </center>

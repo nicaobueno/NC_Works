@@ -116,47 +116,72 @@
 </center>
 </div>
 </div>
+<?php 
+
+if(!isset($_SESSION["login"])){
+    echo "
+    <br>
+        <center>
+            <div id='alerta' class='alert alert-primary'>
+            <span class='h3' style='color:black'>Ainda não é cadastrado? </span><a class='badge badge-secondary' href='#' data-toggle='modal' data-target='#siteModal1'><span class='h4'>Cadastrar</span></a>
+            <p class='h3' style='color:black'>ou</p>
+            <span class='h3' style='color:black'>Já tem cadastro? </span><a class='badge badge-success' href='#' data-toggle='modal' data-target='#siteModal'><span class='h4'>Login</span></a>
+            </div>
+        </center>
+        ";
+}
+
+?>
 <!--Cards-->
-<h3 class="text-center my-4">Oque o  NC_Works tem a oferecer para você!</h3>
-<div class="row justify-content-sm-center my-5">
+<h3 class="text-center my-4">O N.C. Works oferece à você:</h3>
+<div class="container-fluid row justify-content-sm-center my-5 ml-1">
         <div class="col-sm-6 col-md-3">
-            <div class="card mb-5 ml-3 bg-primary">
+            <div class="card mb-3 bg-primary">
                 <div class="card-body">
                     <p><h2 class="card-title text-center">Vagas</h2></p>
-                    <p><h4 class="card-subtitle mb-2 text-center">Totalmente grátis para você</h4></p>
-                    <b><p class="card-text text-center">Para você ter melhor visibilidade e simplicidade para a visualização de vagas perto de você.</p></b>
+                    <p><h4 class="card-subtitle mb-2 text-center">Totalmente grátis</h4></p>
+                    <b><p class="card-text text-center">Para você ter melhor visibilidade e simplicidade para a visualização de vagas perto de você.</p></b><br>
                 </div>
             </div>
         </div>
     <div class="col-sm-6 col-md-3">
-        <div class="card mb-5 bg-primary">
+        <div class="card mb-3 bg-primary">
             <div class="card-body">
-                <p><h2 class="card-title text-center"></h2></p>
-                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
-                <b><p class="card-text text-center"></p></b>
+                <p><h2 class="card-title text-center">Qualidade</h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center">Melhores perfis para vaga</h4></p>
+                <b><p class="card-text text-center">Seus candidatos irão mostrar os melhores perfis para cada vaga deviado à nossa base de dados bem estruturada.</p></b>
             </div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="card mb-5 bg-primary">
+        <div class="card mb-3 bg-primary">
             <div class="card-body">
-                <p><h2 class="card-title text-center"></h2></p>
-                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
-                <b><p class="card-text text-center"></p></b>
+                <p><h2 class="card-title text-center">Confiabilidade</h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center">Dados seguros</h4></p>
+                <b><p class="card-text text-center">Seus dados estarão sempre seguros, pois utilizamos as tecnologias de segurança mais recentes.</p></b><br>
             </div>
         </div>
     </div>
     <div class="col-sm-6 col-md-3">
-        <div class="card mb-5 mr-3 bg-primary">
+        <div class="card mb-3 bg-primary">
             <div class="card-body">
-                <p><h2 class="card-title text-center"></h2></p>
-                <p><h4 class="card-subtitle mb-2 text-center"></h4></p>
-                <b><p class="card-text text-center"></p></b>
+                <p><h2 class="card-title text-center">Suporte</h2></p>
+                <p><h4 class="card-subtitle mb-2 text-center">Facilidade e agilidade</h4></p>
+                <b><p class="card-text text-center">Caso tenha dúvidas ou problemas durante o uso do site, nosso suporte irá o atender com a maior rapidez para lhe auxiliar.</p></b>
             </div>
         </div>
     </div>
 </div>
 </div>
+
+<center>
+    <div class='d-sm-none d-md-none'>
+        <span style='font-size:18px'>Toque no icone</span>&nbsp
+        <img src='./img/collapse_1342267.png' height='25px' weight='25px'></img>&nbsp
+        <span style='font-size:18px'>no topo do site para acessar o menu</span>
+    </div>
+</center>
+
 <!--Rodapé-->
 <div class="container">
         <div class="row">
@@ -177,10 +202,14 @@
             <div class="col-sm-4">
                 <h3>Menu</h3>
                 <div class="list-group text-center">
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Perfil</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Serviços</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Depoimentos</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Contatos</a>
+                    <a href="index.php?action=perfil" class="list-group-item list-group-item-action list-group-item-primary">Perfil</a>
+                    <a href="index.php?action=pesquisar_vaga" class="list-group-item list-group-item-action list-group-item-primary">Pesquisar Vagas</a>
+                    <?php 
+                    if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == "empresa"){
+                        echo "<a href='index.php?action=cadastrar_vaga' class='list-group-item list-group-item-action list-group-item-primary'>Cadastrar Vagas</a>";
+                    }
+                    ?>
+                    <a href="index.php?action=contato" class="list-group-item list-group-item-action list-group-item-primary">Contato</a>
                 </div>
             </div>
 
@@ -229,14 +258,14 @@
 
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputNome">Login</h5>
-                                            <input type="text" class="form-control" id="inputNome" name="login"
-                                                placeholder="Digite seu email...">
+                                            <input type="email" class="form-control" id="inputNome" name="login"
+                                                placeholder="Digite seu email..." required>
                                         </div>
 
                                         <div class="form-group col-sm-7">
                                             <h5 for="inputSobrenome">Senha</h5>
                                             <input type="password" class="form-control" id="inputSobrenome" name="senha"
-                                                placeholder="Digite sua senha...">
+                                                placeholder="Digite sua senha..." required>
                                         </div>
 
                                     </div>
@@ -306,7 +335,7 @@
                                         <div class="form-group col-sm-8">
                                             <label for="inputSenha">Senha</label>
                                             <input type="password" class="form-control" id="inputSenha" name="senha" require
-                                                placeholder="Digite sua senha...">
+                                                placeholder="Digite sua senha..." required>
                                                 <small id="passwordHelpInline" class="text-muted">
                                                 De 6 à 25 caracteres: letras, números e especiais (. _ -)
                                                 </small>

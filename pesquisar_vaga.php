@@ -1,3 +1,6 @@
+<?php
+require "validar.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -56,7 +59,13 @@ label { display: block; }
 		<br /><br />
 		<form action="" method="post">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" autofocus name="pesquisa" placeholder="Digite aqui sua pesquisa..." aria-label="Digite aqui sua pesquisa..." aria-describedby="basic-addon2">
+			<?php 
+				if(isset($_GET["pesquisa"])){
+					$search = $_GET["pesquisa"];	
+				}
+
+				echo "<input type='text' class='form-control' autofocus name='pesquisa' placeholder='Digite aqui sua pesquisa...' value='$search' /> ";
+			?>	 
 				<div class="input-group-append">
 					&nbsp<button type="submit" name="submit" class="btn btn-outline-primary" style='cursor:pointer' type="button">Pesquisa</button>
 				</div>
@@ -71,13 +80,22 @@ label { display: block; }
 if (isset($_POST["submit"])) {
 	
 	require_once "./includes/conexao.php";
-
+	
 	$pesquisa = $_POST["pesquisa"];
+	unset($_GET["pesquisa"]);
+
 	if (trim($pesquisa) == null) {
-		echo "<center><span class='h4 text-danger'>Digite algo para pesquisar!</span></center>";
+		echo "<center>
+		<div id='alerta' class='alert alert-danger alert-dismissible fade show' role='alert'>
+		<h4 style='color:black'>Digite algo para pesquisar!</h4>
+		</div>
+		</center>";
 	}else{
 		$pesquisa = trim($pesquisa);
 		$pesquisa_array = explode(' ', $pesquisa);
+		//ESPECIFICA PALAVRAS QUE NÃO SERÃO PESQUISADAS
+		$palavras_excluidas = array('de', 'do', 'da');
+		$pesquisa_array = array_diff($pesquisa_array, $palavras_excluidas);
 		$qnt = sizeof($pesquisa_array);
 		$id_mostrado = array("");
 
@@ -87,7 +105,16 @@ if (isset($_POST["submit"])) {
 			$sql = "SELECT * FROM `tb_vaga` LEFT JOIN tb_profissao ON tb_vaga.id_profissao = tb_profissao.id_profissao WHERE `titulo` LIKE '%".$pesquisa."%' OR `descricao` LIKE '%".$pesquisa."%' ORDER BY vizualizacoes DESC, titulo ASC";
 			$r = mysqli_query($link, $sql) or die("Erro!");
 			if (mysqli_num_rows($r) <= 0) {
-				echo "<center><h4 style='color:#8a9602'><i>Não foi encontrado nada!</i></h4></center>";
+				echo 
+				"
+				<center>
+				<div id='alerta' class='alert alert-warning alert-dismissible fade show' role='alert'>
+					<span class='text-dark'><h4>Não foi encontrado nada!</h4></span></br><br>
+					<span><h6><i>Por favor, verifique sua pesquisa</i></h6></span>
+				</div>      
+				</center>
+				";
+				exit;
 			}else{
 				while ($a = mysqli_fetch_array($r)){
 					$profissao = $a["profissao"];
@@ -107,13 +134,13 @@ if (isset($_POST["submit"])) {
 											<br />
 											<span class='d-inline' style='font-size:20px;color:blue'>Vaga de $profissao</span>
 											<br />
-											<span style='font-size:14px'><b>Id: </b>$id_vaga</span>
-											<br />
+											<!-- <span style='font-size:14px'><b>Id: </b>$id_vaga</span> -->
+											<br /> 
 											<span style='font-size:14px'><b>Titulo: </b>$titulo</span>
 											<br />
 											<span style='font-size:14px'><b>Descrição: </b>$descricao</span>
 											<br /><br />
-											<a href='?action=detalhes_vaga&id=$id_vaga'><input type='button' class='btn btn-outline-info' style='cursor:pointer' value='Ver mais detalhes...' /></a>
+											<a href='?action=detalhes_vaga&id=$id_vaga&pesquisa=$pesquisa'><input type='button' class='btn btn-outline-info' style='cursor:pointer' value='Ver mais detalhes...' /></a>
 											<br /><br />
 										</div>
 									</div>
@@ -128,7 +155,7 @@ if (isset($_POST["submit"])) {
 	}
 }else{
 	echo "<center><div class='alert alert-dark' role='alert'><h4>Vagas recentes</h4></div></center>";
-
+	require_once "includes/conexao.php";
 	$sql = "SELECT * FROM `tb_vaga` LEFT JOIN tb_profissao ON tb_vaga.id_profissao = tb_profissao.id_profissao ORDER BY id_vaga DESC, vizualizacoes DESC, titulo ASC LIMIT 5";
 	$r = mysqli_query($link, $sql) or die("Erro!");
 
@@ -148,8 +175,8 @@ if (isset($_POST["submit"])) {
 							<br />
 							<span class='d-inline' style='font-size:20px;color:blue'>Vaga de $profissao</span>
 							<br />
-							<span style='font-size:14px'><b>Id: </b>$id_vaga</span>
-							<br />
+							<!-- <span style='font-size:14px'><b>Id: </b>$id_vaga</span> -->
+							<br /> 
 							<span style='font-size:14px'><b>Titulo: </b>$titulo</span>
 							<br />
 							<span style='font-size:14px'><b>Descrição: </b>$descricao</span>
@@ -163,11 +190,15 @@ if (isset($_POST["submit"])) {
 	}
 	echo 
 	"
-	<hr/><center>
-
-		<div id='vermais'><button id='btn_vermais' onclick='name()' style='cursor:pointer' class='btn btn-dark'>Mais vagas...</button></div>
-
-	</center><hr/>
+	<hr/>
+		<div id='vermais'>
+			<center>
+				<button id='btnvermais' style='cursor:pointer' class='btn btn-dark'/>Mais vagas...</button>
+			</center>
+			<br>
+		</div>
+	<hr/>
+	<div id='ver'></div>
 	";
 	
 	function mostrarVagas() {
@@ -208,7 +239,7 @@ if (isset($_POST["submit"])) {
 
 ?>
 
-<script>
+<!-- <script>
 	function name() {
     var btn = document.createElement("button");
     btn.innerHTML = 'button';
@@ -218,7 +249,21 @@ if (isset($_POST["submit"])) {
     btnver.insertBefore(btn, null);
 }
 
+</script> -->
+
+<script src="bts/node_modules/jquery/dist/jquery.js"></script>
+<script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
+<script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+<script>
+	$("#btnvermais").click(function(){
+		$.post( "functions.php", function( response ) {
+			$("#vermais").html( response );
+		});
+	});
 </script>
+
+<script>$('#alerta').alert()</script>
 
 </body>
 </html>

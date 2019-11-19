@@ -10,12 +10,38 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="css/estilo2.css"/>
+  
   <link rel="shortcut icon" type="image/png" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
 
   <title>N.C. WORKS</title>
+  <style>
+  .navlink {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    display: block;
+    text-decoration: none
+  }
+  .navlink:link {
+  color: black;
+  background-color: transparent;
+  text-decoration: none;
+  };
+
+  .navlink:visited {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: none;
+  };
+
+  .navlink:hover {
+  color: #fff;
+  background-color: transparent;
+
+  };
+
+  </style>
 </head>
 
 <body class="bg-light">
@@ -32,8 +58,8 @@
         <div class="navbar-nav mt-2 mt-lg-0">
           <?php 
                 if(!isset($_SESSION["login"])){
-                  echo '<div class="nav-item">
-                  <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal">Entrar</a>
+                  echo '<div class="nav-item mt-2">
+                  <a class="navlink" href="#" data-toggle="modal" data-target="#siteModal">Entrar</a>
                 </div>
                 <div class="nav-item">
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
@@ -46,9 +72,6 @@
 
               ?>
 
-          <div class="nav-item">
-            <a class="nav-link" href="#">Contato</a>
-          </div>
           <?php
                   //validar.php
                   if(isset($_SESSION["login"])){
@@ -73,15 +96,21 @@
                     if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == "empresa"){
                       echo  "
                       <div class='nav-item'>
-                        <a class='nav-link' href='?action=cadastrar_vaga'>Cadastrar Vagas</a>
+                        <a class='nav-link text-dark' href='?action=cadastrar_vaga'>Cadastrar Vagas</a>
                       </div>
-                    "; //?action=cadastrar_vaga
+                    ";
                   }
                 }
               ?>
 
-
+          <div class="nav-item">
+            <a class="nav-link" href="?action=contato">Contato</a>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link" href="?action=equipe">Equipe</a>
+          </div>
         </div>
+        
         <!-- Apresentação do usuario na seção -->
         <?php
                 if(isset($_SESSION["nome"])){
@@ -125,6 +154,9 @@
                 case 'perfil':
                     $incluir = "perfil.php";
                     break;
+                case 'equipe':
+                    $incluir = "equipe.html";
+                    break;
                 case 'cadastrar_vaga':
                     $incluir = "cadastrar_vaga.php";
                     break;
@@ -146,7 +178,7 @@
   <script src="bts/node_modules/jquery/dist/jquery.js"></script>
   <script src="bts/node_modules/popper.js/dist/umd/popper.js"></script>
   <script src="bts/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="js/functions.js"></script>
+  <!-- <script src="js/functions.js"></script> -->
 
   <script>
     // $(function () {

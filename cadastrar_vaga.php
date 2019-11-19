@@ -1,5 +1,5 @@
 <?php
-require "./validar.php";
+require "validar.php";
 if($_SESSION["tipo"] != "empresa"){
     echo "<h1 style='color:red;text-align:center'>Você não ter permissões para acessar essa página</h1>";
     echo "<center><a href='index.php'>Voltar à página inicial</a></center>";
@@ -43,7 +43,7 @@ if($_SESSION["tipo"] != "empresa"){
                                 </select>
                             </td>
                             <tr class="form-group col"><td>Título:</td><td><input required type="text" class="form-control ml-auto" name="titulo"></td></tr>
-                            <tr class="form-group col"><td>Descrição:</td><td><textarea required class="form-control" name="descricao"></textarea></td></tr>
+                            <tr class="form-group col"><td>Descrição:</td><td><textarea required class="form-control" type="text" name="descricao"></textarea></td></tr>
                             <tr class="form-group col"><td>Requisitos:</td><td><textarea required class="form-control" type="text" name="requisitos"></textarea></td></tr>
                             <!-- style="width:500px;height:250px;" -->
                             <tr class="form-group col"><td>Tipo de Contrato:</td><td><input required class="form-control" type="text" name="contrato"></td></tr>
@@ -89,32 +89,28 @@ if($_SESSION["tipo"] != "empresa"){
         $ativo = $_POST["ativo"];
         $confidencial = $_POST["confidencial"];
         $localidade = $_POST["localidade"];
-        $empresa = $_SESSION["login"];
+        $empresa = $_SESSION["nome"];
 
-        $result = mysqli_query($link, "SELECT id_empresa FROM tb_empresa AS e INNER JOIN tb_usuario AS u ON e.id_usuario = u.id_usuario WHERE usuario = '$empresa'");
-        $a = mysqli_fetch_array($result);
+        
 
         if(empty($profissao) || empty($titulo) || empty($descricao) || empty($requisitos) || empty($contrato) || 
         empty($salario) || empty($industria) || empty($jornada) || empty($dt_inicio) || empty($dt_fim)){
             echo "<script>alert('Preencha todos os campos')</script>";
             exit;
         }else{
+            $result = mysqli_query($link, "SELECT id_empresa FROM tb_empresa AS e INNER JOIN tb_usuario AS u ON e.id_usuario = u.id_usuario WHERE usuario = '$empresa'");
+            $a = mysqli_fetch_array($result);
             $sql = "INSERT INTO tb_vaga (`id_profissao`, `id_empresa`,`titulo`,`descricao`,`salario`,`requisitos`,`contrato`,`industria`,`jornada`,`data_inicio`,`data_fim`,`ativo`,`confidencial`, `localidade`) VALUES ($profissao,".$a["id_empresa"].",'$titulo', '$descricao', '$salario', '$requisitos', '$contrato', '$industria', '$jornada' , '$dt_inicio', '$dt_fim', '$ativo', '$confidencial', '$localidade')";
-            if (!$link) {
-                //header("../cadastro.php?error=sqlerror");
-                mysqli_connect_error();
-                exit;
-            } else {
-                mysqli_query($link, $sql) or die("<script>alert('Não foi possível Inserir!')</script>");
-                echo "<meta http-equiv='refresh' content='0;url=cadastrar_vaga_c.php' />";
-            }
+            mysqli_query($link, $sql) or die("<script>alert('Não foi possível Inserir!')</script>");
+            echo "<meta http-equiv='refresh' content='0;url=cadastrar_vaga_c.php' />";
+            
         }
     }
 
 ?>
 
     <!-- script para alertar o usuario sobre os radio button -->
-    <script>
+    <!-- <script>
         var ativo = document.getElementById("ativo");
         var confidencial = document.getElementById("confidencial");
         ativo.addEventListener("focus", myFocusFunction, true);
@@ -129,7 +125,7 @@ if($_SESSION["tipo"] != "empresa"){
         function Blur() {
         document.getElementById("ativo").style.backgroundColor = "";
         }
-    </script>
+    </script> -->
 
 
 </body>

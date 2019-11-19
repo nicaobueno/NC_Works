@@ -73,27 +73,21 @@
     } else {
         $usuario = mysqli_escape_string($link, $usuario);
         $sql = "SELECT email FROM tb_usuario WHERE email='$email'";
-        if (!$link) {
-            //header("../cadastro.php?error=sqlerror");
-            mysqli_connect_error();
-            exit;
-        } else {
-            $result = mysqli_query($link, $sql); 
-            if(!$result || mysqli_num_rows($result) > 0){        
-            // $rows = mysqli_num_rows($result);
-                //header("../cadastro.php?error=usertaken&email=" . $email);
-                echo "<meta http-equiv='refresh' content='0;url=index.php' />";
-                echo "<script>alert('Usuario ja cadastrado')</script>";
-            } else {            
-                $hash = password_hash($senha, PASSWORD_BCRYPT);
-                $sql = "INSERT INTO tb_usuario (usuario, email, senha, tipo) VALUES ('$usuario', '$email', '$hash', '$tipo')";
-                mysqli_query($link, $sql) or die("Não foi possível Inserir!");
-                echo "<script>alert('Dados inseridos com sucesso!')</script>";
-            }
+        $result = mysqli_query($link, $sql); 
+        if(!$result || mysqli_num_rows($result) > 0){        
+        // $rows = mysqli_num_rows($result);
+            //header("../cadastro.php?error=usertaken&email=" . $email);
+            echo "<script>alert('Usuario ja cadastrado')</script>";
+            echo "<meta http-equiv='refresh' content='0;url=index.php' />";
+        } else {            
+            $hash = password_hash($senha, PASSWORD_BCRYPT);
+            $sql = "INSERT INTO tb_usuario VALUES (0,'$usuario', '$email', '$hash', '$tipo', 0, 0)";
+            mysqli_query($link, $sql) or die("Não foi possível Inserir!");
+            echo "<script>alert('Dados inseridos com sucesso!')</script>";
+        }
         }
         mysqli_close($link);
         echo "<meta http-equiv='refresh' content='0;url=index.php' />";
-    }
 
 // // else 
 //     header("Location: index.php");

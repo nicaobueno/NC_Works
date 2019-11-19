@@ -1,3 +1,6 @@
+<?php
+require "validar.php";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,35 +13,47 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="bts/node_modules/bootstrap/compiler/bootstrap.css">
     <title>Detalhes</title>
-    <style>
-        a:link {
-        color: blue;
-        background-color: transparent;
-        text-decoration: none;
-        };
-
-        a:visited {
+    <style type="text/css">
+        #voltar:link {
         color: #d79cff;
         background-color: transparent;
         text-decoration: none;
-        };
+        }
 
-        a:hover {
+        #voltar:visited {
+        color: #d79cff;
+        background-color: transparent;
+        text-decoration: none;
+        }
+
+        #voltar:hover {
         color: black;
         background-color: transparent;
         text-decoration: underline;
-        };
+        }
 
-        a:active {
+        #voltar:active {
         color: pink;
         background-color: transparent;
         text-decoration: underline;
-        };
+        }
     </style>
 </head>
 
 <body class='bg-light'>
-    <?php
+
+    <div class='container'>
+    <br />
+        <div class="d-flex align-items-start flex-row">
+        <?php 
+        $pesquisa = $_GET["pesquisa"];
+        echo "
+        <a href='index.php?action=pesquisar_vaga&pesquisa=$pesquisa'><input type='image' src='./img/seta-esquerda.png' height='35px' width='35px' alt='Voltar'></a>
+        "; ?>
+        &nbsp
+        <!-- <a class="align-self-start" href="#"><button class='btn btn-primary'>Voltar</button></a> -->
+        </div>
+<?php
 
     if (isset($_GET["id"])) {
         require_once "./includes/conexao.php";
@@ -52,7 +67,26 @@
             $id_vaga = $a["id_vaga"];
             $query = mysqli_query($link, "UPDATE `tb_vaga` AS v SET `vizualizacoes` = $views WHERE v.id_vaga = $id_vaga") or die(mysqli_error($link));    
         }
-        
+
+        //VERIFICA USUARIO NA VAGA
+        $id_usuario = $_SESSION["id_usuario"];
+        $sql = "SELECT id_pessoa FROM tb_vaga WHERE id_vaga = $id";
+        $query = mysqli_query($link, $sql);
+        $a = mysqli_fetch_array($query);
+
+        //recupera os id's dos candidatos
+        $candidatos = unserialize($a["id_pessoa"]);
+        if(!is_array($candidatos)){
+            $candidatos = array($candidatos);
+        }
+        //verifica se o candidato ja esta inscrito na vaga
+        if (in_array($id_usuario, $candidatos)) {
+            $_SESSION["vaga_ocupada"] = 1;
+            
+        }else{
+            $_SESSION["vaga_ocupada"] = 0;
+        }
+
         //seleciona os dados da vaga
         $sql = "SELECT * FROM tb_vaga AS v INNER JOIN tb_profissao AS p ON v.id_profissao = p.id_profissao INNER JOIN tb_empresa AS e ON v.id_empresa = e.id_empresa WHERE v.id_vaga = $id";
         $r = mysqli_query($link, $sql) or die(mysqli_error($link));
@@ -70,7 +104,6 @@
             $id_user = $a["id_usuario"];
             
             echo "
-            <div class='container'>
                 <div class='d-block' style='box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);margin-top:20px' name='cabecalho'>
                     <div class='container'>
                         <br />
@@ -112,9 +145,9 @@
                     <div class='d-block container' style='box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3)'>
                         <br />
                         <h5>Descrição</h5>
-                        //valor real <br />
+                        <!-- //valor real --> <br /> 
                         $descricao <br /> <br />
-                        //exemplo <br />
+                        <!-- //exemplo <br />
                         <ul class='descriptionItems'>
                             <li>Área e especialização profissional: Informática, TI, Telecomunicações - Programador / Desenvolvedor</li>
                             <li>Nível hierárquico: Analista</li>
@@ -124,7 +157,7 @@
                             <li>JavaScript</li>
                             <li>Blip</li>
                             <li>Técnicas Obrigatórias: python, django, oop, blip, watsom</li>    
-                        </ul>
+                        </ul> -->
                         <br />
                     </div>
                     <div style='padding-left:20px'></div>
@@ -190,7 +223,6 @@
                 <br/>
             </div>
             <br />
-        </div>
             ";
             //INSCREVE USUARIO NA VAGA
             if (isset($_POST["candidatar"])) {
@@ -202,7 +234,7 @@
                 if ($a["id_pessoa"] === null) {
                     //inscreve o PRIMEIRO usuario na vaga
                     $id_usuario = array($id_usuario);
-                    $candidatos = serialize($id_usuario[0]);
+                    $candidatos = serialize($id_usuario);
                     $query = mysqli_query($link, "UPDATE tb_vaga AS v SET v.id_pessoa = '$candidatos' WHERE id_vaga = $id") or die(mysql_error($link));
                     $_SESSION["vaga_ocupada"] = 1;
                     echo "<meta http-equiv='refresh' content='0;url=index.php?action=detalhes_vaga&id=$id' />";
@@ -212,7 +244,6 @@
                     if(!is_array($candidatos)){
                         $candidatos = array($candidatos);
                     }
-                    //$candidatos = explode(' ', $a[0]);
                     //verifica se o candidato ja esta inscrito na vaga
                     if (in_array($id_usuario, $candidatos)) {
                         $_SESSION["vaga_ocupada"] = 1;
@@ -236,7 +267,6 @@
                 $query = mysqli_query($link, $sql);
                 $a = mysqli_fetch_array($query);
                 $candidatos = unserialize($a["id_pessoa"]);
-                var_dump($candidatos);
                 if (in_array($id_usuario, $candidatos)) {
                     $key = array_search($id_usuario, $candidatos);
                     unset($candidatos[$key]);
@@ -250,7 +280,8 @@
     }else{
         echo "<center><span class='h4 text-danger'>Selecione uma vaga!</span></center>";
     }
-    ?>
+?>
+</div>
 </body>
 
 <script>$('.alert').alert()</script>

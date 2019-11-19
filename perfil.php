@@ -8,11 +8,21 @@ require "./validar.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perfil</title>
+    <style>
+        body {
+            background-image: url("./img/manutencao.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body>
+<br>
     <center>
 
-        <h1>Perfil</h1>
+        <!-- <img src='./img/manutencao.jpg' height='100%' width='100%' > -->
 
     </center>
 </body>
