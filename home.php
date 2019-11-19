@@ -66,8 +66,8 @@
             <img src="img/carrossel1.jpg" class="img-fluid d-block">
 
             <div class="carousel-caption d-none d-md-block">
-                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
-                <p>sdadasdasdsasasaasasaassasaasas</p>
+                <h3>Taxa de desemprego é reduzida em 3%.</h3>
+                <p>Afirmam sites de fontes confiaveis.</p>
             </div>
 
         </div>
@@ -76,8 +76,8 @@
             <img src="img/carrossel2.jpg" class="img-fluid d-block">
 
             <div class="carousel-caption d-none d-md-block">
-                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
-                <p>sdadasdasdsasasaasasaassasaasas</p>
+                <h3>Globo sofre ataque de crackers</h3>
+                <p>Roubo de dados para venda no mercado negro.</p>
             </div>
 
         </div>
@@ -86,8 +86,8 @@
             <img src="img/carrossel3.jpg" class="img-fluid d-block">
 
             <div class="carousel-caption d-none d-md-block">
-                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
-                <p>sdadasdasdsasasaasasaassasaasas</p>
+                <h3>Desenvolvedores de php</h3>
+                <p>Tem mais oportunidades no mercado de trabalho.</p>
             </div>
 
         </div>
@@ -96,8 +96,8 @@
             <img src="img/carrossel4.jpg" class="img-fluid d-block">
 
             <div class="carousel-caption d-none d-md-block">
-                <h3>asdasdasassasdasdsadsadsaasadsa</h3>
-                <p>sdadasdasdsasasaasasaassasaasas</p>
+                <h3>Linx contrata 1.000 funcionários.</h3>
+                <p>Utilizando o N.C. Works pra o Brasil inteiro.</p>
             </div>
 
         </div>
@@ -383,13 +383,6 @@ if(!isset($_SESSION["login"])){
             </div>
         </div>
 </div>
-
-    <script>
-        $(function () {
-            $('[data-toggle="popover"]').popover()
-        })
-    </script>
-
 </body>
 
 </html>

@@ -65,7 +65,7 @@
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
                 </div>
                 <div class="nav-item">
-                  <a class="nav-link" href="#">Empresas</a>
+                  <a class="nav-link" href="?action=empresas">Empresas</a>
                 </div>
                 ';
                 }
@@ -90,8 +90,12 @@
                         $_SESSION["tipo"] = "pessoa";
                     }
                     echo "<div class='nav-item'>
-                    <a class='nav-link' href='?action=pesquisar_vaga'>Pesquisar Vagas</a>
-                  </div>";
+                            <a class='nav-link' href='?action=empresas'>Empresas</a>
+                          </div>
+                    
+                          <div class='nav-item'>
+                            <a class='nav-link' href='?action=pesquisar_vaga'>Pesquisar Vagas</a>
+                          </div>";
                     //CRIA CADASTRAR VAGA CASO SEJA EMPRESA
                     if(isset($_SESSION["tipo"]) && $_SESSION["tipo"] == "empresa"){
                       echo  "
@@ -152,7 +156,7 @@
                     $incluir = "contato.php";
                     break;
                 case 'perfil':
-                    $incluir = "perfil.php";
+                    $incluir = "pagPrincipal.php";
                     break;
                 case 'equipe':
                     $incluir = "equipe.html";
@@ -165,7 +169,7 @@
                     break;  
                 case 'detalhes_vaga':
                     $incluir = "detalhes_vaga.php";
-                    break; 
+                    break;
             }
             include($incluir);
         }else{
@@ -189,17 +193,11 @@
     $(function () {
       $('.dropdown-toggle').dropdown();
     });
+    $(function (){
+        $('[data-toggle="popover"]').popover()
+    });
+    
   </script>
-  <script>
-    // $(function () {
-    //   $('.dropdown-toggle').dropdown();
-    // });
-
-    // $(".nav-link").on("click", function () {
-    //   $('.navbar-collapse').collapse('hide');
-    // });
-  </script>
-
 </body>
 
 </html>
