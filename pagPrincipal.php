@@ -21,7 +21,7 @@ if(isset($_SESSION["tipo"])){
 if($tipo == "empresa"){
     $sql = mysqli_query($link, "SELECT * FROM tb_empresa");
     $array = mysqli_fetch_array($sql);
-    if(!$sql || mysqli_num_rows($sql) <= 0){
+    if(!$sql || mysqli_num_rows($sql) <= 3){
         $sql = mysqli_query($link, "SELECT * FROM tb_uf ");
     
         echo "
@@ -31,7 +31,7 @@ if($tipo == "empresa"){
         <div class='container'>
             <div class='row justify-content-center mb-5'>
                 <div class='col-sm-12 col-md-10 col-lg-8'>
-                    <form method='POST' action=''>
+                    <form method='POST' action='cadastrarPerfilEmpresa.php'>
                         <div class='form-row'>
                             <div class='form-group col'>
                                 <p><b>Nome da Empresa</b></p>
@@ -114,7 +114,7 @@ if($tipo == "empresa"){
                                 <input type='text' class='form-control mr-auto' name='sobre'>
                             </div>
                         </div>
-                        <button type='submit' name='enviar' class='btn btn-primary col-2'>
+                        <button type='submit' name='enviarCad' class='btn btn-primary col-2'>
                             Salvar
                         </button>
                         <button type='reset' class='btn btn-danger col-2 ml-5'>
@@ -126,16 +126,15 @@ if($tipo == "empresa"){
         </form>
         </div>
         ";
-        include("cadastrarPerfilEmpresa.php");
-    }else{     
-            $idempresa = $_SESSION["nome"];
-            $sql = mysqli_query($link, "SELECT * FROM tb_empresa WHERE id_empresa ='$idempresa'");
-            $empresa = mysqli_fetch_array($sql);
-            $name = $_SESSION["nome"];
+        
+    }else{  
+            $idusuario = $_SESSION["id_usuario"];
+            $code = "SELECT * FROM `tb_empresa` as emp
+            LEFT JOIN `tb_usuario` as us ON emp.id_usuario = us.id_usuario
+            where us.id_usuario = '$idusuario'";
 
-
-            $code = "SELECT * FROM tb_empresa";
             $conn = mysqli_query($link,$code);
+
                 while($v = mysqli_fetch_array($conn)){
                 $nome = $v["nome_empresa"];
                 $sobre = $v["tipoempresa"];
@@ -170,109 +169,105 @@ if($tipo == "empresa"){
                         <p class="my-3"><b>Sobre</b></p>
                         <p>Nenhum dado disponivel.</p>
                     </div>
+                </div>
             </div>
-        </div>
         
-        <!--Modal Usuario-->
-        <div class="modal fade" id="editarPerfilModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h5 class="modal-title">Editar perfil</h5>
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span>&times;</span>
-                            </button>
-                        </div>
-        
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                            <div class="form-group">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$nome.'" placeholder="Nome da empresa..." style="border-radius: 10px;">
-                                </p>
+            <!--Modal Usuario-->
+            <div class="modal fade" id="editarPerfilModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <form>
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar perfil</h5>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$sobre.'" placeholder="Com oque a sua empresa trabalha..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            <div class="form-row">
-                            <div class="form-group col-4">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$cidade.'" placeholder="Cidade..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            <div class="form-group col-4">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$estado.'" placeholder="Estado..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            <div class="form-group col-4">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$pais.'" placeholder="País..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            </div>
-                            <div class="form-group">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$sitedaempresa.'" placeholder="Sua empresa tem um site? Divulgue ele em seu perfil..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            <div class="form-group">
-                                <p>
-                                    <input class="form-control mr-auto" value="'.$contatoempresa.'" placeholder="Coloque um contato para que os usuarios possam tirar duvidas..." style="border-radius: 10px;">
-                                </p>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-6">
-                                    <div class="input-group mb-3 bg-primary" style="border-radius: 10px;">
-                                        <div class="custom-file bg-primary" style="border-radius: 10px;">
-                                        <label class="custom-file-label ml-3 mt-2" for="inputGroupFile01">Editar foto de perfil...</label>
-                                            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                <div class="form-group">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$nome.'" placeholder="Nome da empresa..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$sobre.'" placeholder="Com oque a sua empresa trabalha..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-row">
+                                <div class="form-group col-4">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$cidade.'" placeholder="Cidade..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-group col-4">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$estado.'" placeholder="Estado..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-group col-4">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$pais.'" placeholder="País..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$sitedaempresa.'" placeholder="Sua empresa tem um site? Divulgue ele em seu perfil..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-group">
+                                    <p>
+                                        <input class="form-control mr-auto" value="'.$contatoempresa.'" placeholder="Coloque um contato para que os usuarios possam tirar duvidas..." style="border-radius: 10px;">
+                                    </p>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6">
+                                        <div class="input-group mb-3 bg-primary" style="border-radius: 10px;">
+                                            <div class="custom-file bg-primary" style="border-radius: 10px;">
+                                            <label class="custom-file-label ml-3 mt-2" for="inputGroupFile01">Editar foto de perfil...</label>
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <div class="input-group mb-3 bg-primary" style="border-radius: 10px;">
+                                            <div class="custom-file bg-primary" style="border-radius: 10px;">
+                                            <label class="custom-file-label ml-3 mt-2" for="inputGroupFile02">Editar foto de capa...</label>
+                                                <input type="file" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group col-6">
-                                    <div class="input-group mb-3 bg-primary" style="border-radius: 10px;">
-                                        <div class="custom-file bg-primary" style="border-radius: 10px;">
-                                        <label class="custom-file-label ml-3 mt-2" for="inputGroupFile02">Editar foto de capa...</label>
-                                            <input type="file" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon02">
-                                        </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <textarea style="border-radius: 10px;" class="form-control" value="'.$sobreempresa.'" placeholder="Coloque aqui informações, ou até mesmo histórias da empresa para que todos os usuarios possam visualizar..." aria-label="With textarea"></textarea>
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="col-sm-9 mb-3">
+                                        <button type="submit" title="Editar" class="btn btn-primary col-3" style="border-radius: 10px;"><b>Salvar</b></button>
+                                        <button type="reset" title="Limpar" class="btn btn-secondary ml-2 col-3" style="border-radius: 10px;">Limpar</button>
+                                        <a  style="border-radius: 10px;" tabindex="0" class="btn btn-info ml-5 col-2" role="button"
+                                            data-toggle="popover" data-placement="right" data-trigger="focus"
+                                            title="Ajuda"
+                                            data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
+                                    </div>
+                                </div>                        
                             </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <textarea style="border-radius: 10px;" class="form-control" value="'.$sobreempresa.'" placeholder="Coloque aqui informações, ou até mesmo histórias da empresa para que todos os usuarios possam visualizar..." aria-label="With textarea"></textarea>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                             </div>
-                            <div class="form-row">
-                                <div class="col-sm-9 mb-3">
-                                    <button type="submit" title="Editar" class="btn btn-primary col-3" style="border-radius: 10px;"><b>Salvar</b></button>
-                                    <button type="reset" title="Limpar" class="btn btn-secondary ml-2 col-3" style="border-radius: 10px;">Limpar</button>
-                                    <a  style="border-radius: 10px;" tabindex="0" class="btn btn-info ml-5 col-2" role="button"
-                                        data-toggle="popover" data-placement="right" data-trigger="focus"
-                                        title="Ajuda"
-                                        data-content="Preencha todos os campos para que o cadastro seja realizado. Caso não for esse o problema entre em contato conosco.">Ajuda</a>
-                                </div>
-                            </div>                        
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>';
+                    </form>
+                </div>
+            </div>';
+            }
         }
-    }
 }elseif ($tipo == "pessoa") {
     if($tipo == "pessoa"){
-        $sql = mysqli_query($link, "SELECT * FROM tb_pessoa");
-        $array = mysqli_fetch_array($sql);
-        if(!$sql || mysqli_num_rows($sql) <= 0){
-            $sql = mysqli_query($link, "SELECT * FROM tb_uf ");
         echo "
         <div class='container'>
         <div class='row justify-content-center mb-5'>
@@ -302,7 +297,8 @@ if($tipo == "empresa"){
                         <div class='form-group col'>
                             <p><b>Selecione o seu estado</b></p>
                             <select class='form-control col-2'>
-                            <option></option>";
+                            <option></option>
+                            ";
                             while($_UF = mysqli_fetch_array($sql)){
                                 $id_uf = $_UF['id_uf'];
                                 $uf = $_UF['uf'];
@@ -352,7 +348,7 @@ if($tipo == "empresa"){
         ";
 }
 }
-}
+
 
 
 

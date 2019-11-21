@@ -58,8 +58,8 @@
         <div class="navbar-nav mt-2 mt-lg-0">
           <?php 
                 if(!isset($_SESSION["login"])){
-                  echo '<div class="nav-item mt-2">
-                  <a class="navlink" href="#" data-toggle="modal" data-target="#siteModal">Entrar</a>
+                  echo '<div class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal">Entrar</a>
                 </div>
                 <div class="nav-item">
                   <a class="nav-link" href="#" data-toggle="modal" data-target="#siteModal1">Cadastrar-se</a>
